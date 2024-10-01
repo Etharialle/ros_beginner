@@ -9,17 +9,20 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
 find_package(yaml-cpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(foxglove_bridge REQUIRED)
 
 add_executable(firstPublisher src/first_publisher.cpp)
-ament_target_dependencies(firstPublisher rclcpp std_msgs yaml-cpp ament_index_cpp)
+ament_target_dependencies(firstPublisher rclcpp std_msgs geometry_msgs yaml-cpp ament_index_cpp)
 
 add_executable(firstSubscriber src/first_subscriber.cpp)
-ament_target_dependencies(firstSubscriber rclcpp std_msgs)
+ament_target_dependencies(firstSubscriber rclcpp std_msgs geometry_msgs yaml-cpp ament_index_cpp)
 
 include_directories(${YAML_INCLUDE_DIRS})
 target_link_libraries(firstPublisher ${YAML_CPP_LIBRARIES})
+target_link_libraries(firstSubscriber ${YAML_CPP_LIBRARIES})
 
 install(TARGETS
   firstPublisher
@@ -28,6 +31,8 @@ install(TARGETS
 
 install(FILES
   src/first_publisher.yaml
+  src/first_subscriber.yaml
+  src/time_sync.launch.py
   DESTINATION share/${PROJECT_NAME})
 
 # Include directories for header files

@@ -27,25 +27,41 @@ class MinimalPublisher : public rclcpp::Node
         std::string share_path = ament_index_cpp::get_package_share_directory("time_sync");
         std::cout << "Share path: " << share_path << std::endl;
         YAML::Node config = YAML::LoadFile(share_path + "/first_publisher.yaml");
-        topic_name = config["output_topics"].as<std::string>();
+        topic_name = config["output_topic"].as<std::string>();
       } catch (const std::exception& e) {
         std::cerr << "Error loading YAML file: " << e.what() << std::endl;
       }
-      publisher_ = this->create_publisher<std_msgs::msg::String>(topic_name, 10);
+      publisher_ = this->create_publisher<geometry_msgs::msg::Pose>(topic_name, 10);
       timer_ = this->create_wall_timer(
-      500ms, std::bind(&MinimalPublisher::timer_callback, this));
+      500ms, std::bind(&MinimalPublisher::pose_updater, this));
     }
 
   private:
-    void timer_callback()
+
+    void pose_updater()
     {
-      auto message = std_msgs::msg::String();
-      message.data = "Hello, world! " + std::to_string(count_++) + " on " + topic_name;
-      RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-      publisher_->publish(message);
+      auto message = geometry_msgs::msg::Pose();
+        
+        // Set the position
+        message.position.x = count_;
+        message.position.y = count_ + 1.0;
+        message.position.z = 0.0;
+
+        // Set the orientation (as a quaternion)
+        message.orientation.x = 0.0;
+        message.orientation.y = 0.0;
+        message.orientation.z = 0.0;
+        message.orientation.w = 1.0; // No rotation
+
+        RCLCPP_INFO(this->get_logger(), "Publishing pose: [x: %f, y: %f, z: %f]", 
+                    message.position.x, message.position.y, message.position.z);
+        
+        publisher_->publish(message);
+        count_++;
     }
     rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    rclcpp::Publisher<geometry_msgs::msg::Pose>::SharedPtr publisher_;
+    //rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
     size_t count_;
     std::string topic_name;
     //std::vector<std::string> output_topics_; 
