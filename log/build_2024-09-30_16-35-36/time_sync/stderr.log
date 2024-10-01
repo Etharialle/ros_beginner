@@ -1,0 +1,11 @@
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:22:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kconfig_file[m[K’ was not declared in this scope
+   22 |       YAML::Node config = YAML::LoadFile([01;31m[Kconfig_file[m[K);
+      |                                          [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:33:66:[m[K [01;31m[Kerror: [m[K‘[01m[Ktopic_name[m[K’ was not declared in this scope; did you mean ‘[01m[Ktypename[m[K’?
+   33 |       publisher_ = this->create_publisher<std_msgs::msg::String>([01;31m[Ktopic_name[m[K, 10);
+      |                                                                  [01;31m[K^~~~~~~~~~[m[K
+      |                                                                  [32m[Ktypename[m[K
+gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

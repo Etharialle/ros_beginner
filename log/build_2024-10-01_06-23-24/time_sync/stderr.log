@@ -1,0 +1,13 @@
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:31:22:[m[K [01;31m[Kerror: [m[K‘[01m[Kconfig[m[K’ was not declared in this scope
+   31 |         topic_name = [01;31m[Kconfig[m[K["output_topics"].as<std::string>();
+      |                      [01;31m[K^~~~~~[m[K
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:31:60:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K>[m[K’ token
+   31 |         topic_name = config["output_topics"].as<std::string[01;31m[K>[m[K();
+      |                                                            [01;31m[K^[m[K
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:31:62:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K)[m[K’ token
+   31 |         topic_name = config["output_topics"].as<std::string>([01;31m[K)[m[K;
+      |                                                              [01;31m[K^[m[K
+gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

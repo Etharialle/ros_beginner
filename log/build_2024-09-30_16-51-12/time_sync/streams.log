@@ -1,0 +1,58 @@
+[0.005s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[0.026s] [35m[1mConsolidate compiler generated dependencies of target firstPublisher[0m
+[0.033s] [ 50%] Built target firstSubscriber
+[0.035s] [ 75%] [32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o[0m
+[1.962s] [100%] [32m[1mLinking CXX executable firstPublisher[0m
+[2.026s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: warning: relocation against `_ZTVN4YAML9ExceptionE' in read-only section `.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]'
+[2.032s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::Exception::Exception(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+[2.032s] first_publisher.cpp:(.text._ZN4YAML9ExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML9ExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x61): undefined reference to `vtable for YAML::Exception'
+[2.032s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::RepresentationException::RepresentationException(YAML::Mark const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+[2.032s] first_publisher.cpp:(.text._ZN4YAML23RepresentationExceptionC2ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML23RepresentationExceptionC5ERKNS_4MarkERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x32): undefined reference to `vtable for YAML::RepresentationException'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::InvalidNode::InvalidNode(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML11InvalidNodeC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML11InvalidNodeC5ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x71): undefined reference to `vtable for YAML::InvalidNode'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::BadConversion::BadConversion(YAML::Mark const&)':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML13BadConversionC2ERKNS_4MarkE[_ZN4YAML13BadConversionC5ERKNS_4MarkE]+0x7c): undefined reference to `vtable for YAML::BadConversion'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::memory_holder::create_node()':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML6detail13memory_holder11create_nodeEv[_ZN4YAML6detail13memory_holder11create_nodeEv]+0x20): undefined reference to `YAML::detail::memory::create_node()'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::node_ref::mark_defined()':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML6detail8node_ref12mark_definedEv[_ZN4YAML6detail8node_ref12mark_definedEv]+0x20): undefined reference to `YAML::detail::node_data::mark_defined()'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::node_ref::set_null()':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML6detail8node_ref8set_nullEv[_ZN4YAML6detail8node_ref8set_nullEv]+0x20): undefined reference to `YAML::detail::node_data::set_null()'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::node_ref::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+[2.033s] first_publisher.cpp:(.text._ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE[_ZN4YAML6detail8node_ref10set_scalarERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE]+0x2e): undefined reference to `YAML::detail::node_data::set_scalar(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+[2.033s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::Node::EnsureNodeExists() const':
+[2.033s] first_publisher.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x44): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+[2.033s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node16EnsureNodeExistsEv[_ZNK4YAML4Node16EnsureNodeExistsEv]+0x4e): undefined reference to `typeinfo for YAML::InvalidNode'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::Node::Mark() const':
+[2.034s] first_publisher.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x44): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node4MarkEv[_ZNK4YAML4Node4MarkEv]+0x4e): undefined reference to `typeinfo for YAML::InvalidNode'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::Node::Type() const':
+[2.034s] first_publisher.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x44): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node4TypeEv[_ZNK4YAML4Node4TypeEv]+0x4e): undefined reference to `typeinfo for YAML::InvalidNode'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::Node::Scalar[abi:cxx11]() const':
+[2.034s] first_publisher.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x44): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x4e): undefined reference to `typeinfo for YAML::InvalidNode'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node6ScalarB5cxx11Ev[_ZNK4YAML4Node6ScalarB5cxx11Ev]+0x7d): undefined reference to `YAML::detail::node_data::empty_scalar[abi:cxx11]()'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `MinimalPublisher::MinimalPublisher()':
+[2.034s] first_publisher.cpp:(.text._ZN16MinimalPublisherC2Ev[_ZN16MinimalPublisherC5Ev]+0x177): undefined reference to `YAML::LoadFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > YAML::Node::as<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >() const':
+[2.034s] first_publisher.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x57): undefined reference to `YAML::InvalidNode::~InvalidNode()'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v[_ZNK4YAML4Node2asINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEET_v]+0x61): undefined reference to `typeinfo for YAML::InvalidNode'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::get<char [14]>(char const (&) [14], std::shared_ptr<YAML::detail::memory_holder>)':
+[2.034s] first_publisher.cpp:(.text._ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0xd3): undefined reference to `YAML::detail::node_data::convert_to_map(std::shared_ptr<YAML::detail::memory_holder> const&)'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x103): undefined reference to `YAML::BadSubscript::~BadSubscript()'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x10d): undefined reference to `typeinfo for YAML::BadSubscript'
+[2.034s] /usr/bin/ld: first_publisher.cpp:(.text._ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data3getIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x1fb): undefined reference to `YAML::detail::node_data::insert_map_pair(YAML::detail::node&, YAML::detail::node&)'
+[2.034s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::BadSubscript::BadSubscript<char [14]>(YAML::Mark const&, char const (&) [14])':
+[2.034s] first_publisher.cpp:(.text._ZN4YAML12BadSubscriptC2IA14_cEERKNS_4MarkERKT_[_ZN4YAML12BadSubscriptC5IA14_cEERKNS_4MarkERKT_]+0x61): undefined reference to `vtable for YAML::BadSubscript'
+[2.035s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::detail::node& YAML::detail::node_data::convert_to_node<char [14]>(char const (&) [14], std::shared_ptr<YAML::detail::memory_holder>)':
+[2.035s] first_publisher.cpp:(.text._ZN4YAML6detail9node_data15convert_to_nodeIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE[_ZN4YAML6detail9node_data15convert_to_nodeIA14_cEERNS0_4nodeERKT_St10shared_ptrINS0_13memory_holderEE]+0x69): undefined reference to `YAML::detail::memory_holder::merge(YAML::detail::memory_holder&)'
+[2.035s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o: in function `YAML::TypedBadConversion<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~TypedBadConversion()':
+[2.035s] first_publisher.cpp:(.text._ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED2Ev[_ZN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED5Ev]+0x26): undefined reference to `YAML::BadConversion::~BadConversion()'
+[2.035s] /usr/bin/ld: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o:(.data.rel.ro._ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE[_ZTIN4YAML18TypedBadConversionINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE]+0x10): undefined reference to `typeinfo for YAML::BadConversion'
+[2.037s] /usr/bin/ld: warning: creating DT_TEXTREL in a PIE
+[2.038s] collect2: error: ld returned 1 exit status
+[2.039s] gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:174: firstPublisher] Error 1
+[2.039s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+[2.039s] gmake: *** [Makefile:146: all] Error 2
+[2.041s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32

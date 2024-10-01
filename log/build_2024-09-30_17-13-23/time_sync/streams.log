@@ -1,0 +1,20 @@
+[0.005s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[0.016s] -- Found ament_cmake: 2.0.6 (/opt/ros/iron/share/ament_cmake/cmake)
+[0.090s] -- Found rclcpp: 21.0.7 (/opt/ros/iron/share/rclcpp/cmake)
+[0.106s] -- Found rosidl_generator_c: 4.0.1 (/opt/ros/iron/share/rosidl_generator_c/cmake)
+[0.110s] -- Found rosidl_generator_cpp: 4.0.1 (/opt/ros/iron/share/rosidl_generator_cpp/cmake)
+[0.115s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.123s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.192s] -- Found rmw_implementation_cmake: 7.1.0 (/opt/ros/iron/share/rmw_implementation_cmake/cmake)
+[0.193s] -- Found rmw_fastrtps_cpp: 7.1.4 (/opt/ros/iron/share/rmw_fastrtps_cpp/cmake)
+[0.246s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.321s] -- Found std_msgs: 5.0.1 (/opt/ros/iron/share/std_msgs/cmake)
+[0.335s] -- Configuring incomplete, errors occurred!
+[0.335s] See also "/home/etharialle/github/ros_beginner/build/time_sync/CMakeFiles/CMakeOutput.log".
+[0.335s] [31mCMake Error at CMakeLists.txt:14 (target_link_libraries):
+[0.335s]   Cannot specify link libraries for target "firstPublisher" which is not
+[0.335s]   built by this project.
+[0.335s] 
+[0.335s] [0m
+[0.338s] gmake: *** [Makefile:308: cmake_check_build_system] Error 1
+[0.339s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32

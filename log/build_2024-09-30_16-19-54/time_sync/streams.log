@@ -1,0 +1,30 @@
+[0.005s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[0.045s] [ 25%] [32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o[0m
+[0.047s] [ 50%] [32mBuilding CXX object CMakeFiles/firstSubscriber.dir/src/first_subscriber.cpp.o[0m
+[1.877s] [ 75%] [32m[1mLinking CXX executable firstPublisher[0m
+[1.955s] [ 75%] Built target firstPublisher
+[2.954s] [100%] [32m[1mLinking CXX executable firstSubscriber[0m
+[3.107s] [100%] Built target firstSubscriber
+[3.115s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[3.132s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --install /home/etharialle/github/ros_beginner/build/time_sync
+[3.134s] -- Install configuration: ""
+[3.135s] -- Installing: /home/etharialle/github/ros_beginner/install/time_sync/lib/time_sync/firstPublisher
+[3.135s] -- Set runtime path of "/home/etharialle/github/ros_beginner/install/time_sync/lib/time_sync/firstPublisher" to ""
+[3.135s] -- Installing: /home/etharialle/github/ros_beginner/install/time_sync/lib/time_sync/firstSubscriber
+[3.136s] -- Set runtime path of "/home/etharialle/github/ros_beginner/install/time_sync/lib/time_sync/firstSubscriber" to ""
+[3.136s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/ament_index/resource_index/package_run_dependencies/time_sync
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/ament_index/resource_index/parent_prefix_path/time_sync
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/environment/ament_prefix_path.sh
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/environment/ament_prefix_path.dsv
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/environment/path.sh
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/environment/path.dsv
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/local_setup.bash
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/local_setup.sh
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/local_setup.zsh
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/local_setup.dsv
+[3.137s] -- Installing: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/package.dsv
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/ament_index/resource_index/packages/time_sync
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/cmake/time_syncConfig.cmake
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/cmake/time_syncConfig-version.cmake
+[3.137s] -- Up-to-date: /home/etharialle/github/ros_beginner/install/time_sync/share/time_sync/package.xml
+[3.138s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --install /home/etharialle/github/ros_beginner/build/time_sync

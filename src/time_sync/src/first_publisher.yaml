@@ -1,0 +1,3 @@
+output_topics:
+  - first_publisher/test_topic1
+  - first_publisher/test_topic3

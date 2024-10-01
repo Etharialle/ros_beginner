@@ -1,0 +1,7 @@
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:28:51:[m[K [01;31m[Kerror: [m[K‘[01m[Kget_package_share_directory[m[K’ is not a member of ‘[01m[Kament_index_cpp[m[K’
+   28 |         std::string share_path = ament_index_cpp::[01;31m[Kget_package_share_directory[m[K("time_sync");
+      |                                                   [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

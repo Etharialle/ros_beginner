@@ -1,0 +1,77 @@
+[0.000000] (-) TimerEvent: {}
+[0.000102] (time_sync) JobQueued: {'identifier': 'time_sync', 'dependencies': OrderedDict()}
+[0.000145] (time_sync) JobStarted: {'identifier': 'time_sync'}
+[0.003586] (time_sync) JobProgress: {'identifier': 'time_sync', 'progress': 'cmake'}
+[0.003798] (time_sync) JobProgress: {'identifier': 'time_sync', 'progress': 'build'}
+[0.004126] (time_sync) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/etharialle/github/ros_beginner/build/time_sync', '--', '-j32', '-l32'], 'cwd': '/home/etharialle/github/ros_beginner/build/time_sync', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'etharialle'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/etharialle/github/ros_beginner/install/turtlesim/lib:/opt/ros/iron/opt/rviz_ogre_vendor/lib:/opt/ros/iron/lib/x86_64-linux-gnu:/opt/ros/iron/lib'), ('HOME', '/home/etharialle'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('OLDPWD', '/home/etharialle/github/ros_beginner/src'), ('TERM_PROGRAM_VERSION', '1.93.1'), ('DESKTOP_SESSION', 'ubuntu'), ('NVM_BIN', '/home/etharialle/.nvm/versions/node/v20.12.2/bin'), ('NVM_INC', '/home/etharialle/.nvm/versions/node/v20.12.2/include/node'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1776'), ('SYSTEMD_EXEC_PID', '2017'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3980'), ('NVM_DIR', '/home/etharialle/.nvm'), ('_colcon_cd_root', '/opt/ros/iron/'), ('COLCON_PREFIX_PATH', '/home/etharialle/github/ros_beginner/install'), ('ROS_DISTRO', 'iron'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'etharialle'), ('JOURNAL_STREAM', '8:21642'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'etharialle'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/iron/bin:/home/etharialle/.nvm/versions/node/v20.12.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/etharialle-badwolf:@/tmp/.ICE-unix/1990,unix/etharialle-badwolf:/tmp/.ICE-unix/1990'), ('INVOCATION_ID', '21170121f15f4de89fa613a10f65cdf4'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-c0aae83ef3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/etharialle/github/ros_beginner/install/time_sync:/home/etharialle/github/ros_beginner/install/turtlesim:/opt/ros/iron'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('ROS_AUTOMATIC_DISCOVERY_RANGE', 'SUBNET'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/etharialle/github/ros_beginner/build/time_sync'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/etharialle/github/ros_beginner/install/turtlesim/lib/python3.10/site-packages:/opt/ros/iron/lib/python3.10/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/etharialle/github/ros_beginner/install/time_sync:/home/etharialle/github/ros_beginner/install/turtlesim:/opt/ros/iron')]), 'shell': False}
+[0.019426] (time_sync) StdoutLine: {'line': b'-- Found ament_cmake: 2.0.6 (/opt/ros/iron/share/ament_cmake/cmake)\n'}
+[0.099766] (-) TimerEvent: {}
+[0.124145] (time_sync) StdoutLine: {'line': b'-- Found rclcpp: 21.0.7 (/opt/ros/iron/share/rclcpp/cmake)\n'}
+[0.136390] (time_sync) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.0.1 (/opt/ros/iron/share/rosidl_generator_c/cmake)\n'}
+[0.139857] (time_sync) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.0.1 (/opt/ros/iron/share/rosidl_generator_cpp/cmake)\n'}
+[0.145182] (time_sync) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.151881] (time_sync) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.199890] (-) TimerEvent: {}
+[0.220307] (time_sync) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.1.0 (/opt/ros/iron/share/rmw_implementation_cmake/cmake)\n'}
+[0.220885] (time_sync) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 7.1.4 (/opt/ros/iron/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.271632] (time_sync) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.300017] (-) TimerEvent: {}
+[0.344552] (time_sync) StdoutLine: {'line': b'-- Found std_msgs: 5.0.1 (/opt/ros/iron/share/std_msgs/cmake)\n'}
+[0.361710] (time_sync) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.14.4 (/opt/ros/iron/share/ament_lint_auto/cmake)\n'}
+[0.392395] (time_sync) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[0.392638] (time_sync) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[0.392707] (time_sync) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[0.392759] (time_sync) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[0.392906] (time_sync) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[0.392976] (time_sync) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[0.393046] (time_sync) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[0.393173] (time_sync) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.398119] (time_sync) StdoutLine: {'line': b'-- Generating done\n'}
+[0.398729] (time_sync) StdoutLine: {'line': b'-- Build files have been written to: /home/etharialle/github/ros_beginner/build/time_sync\n'}
+[0.400073] (-) TimerEvent: {}
+[0.412823] (time_sync) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target firstPublisher\x1b[0m\n'}
+[0.412964] (time_sync) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target firstSubscriber\x1b[0m\n'}
+[0.425536] (time_sync) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o\x1b[0m\n'}
+[0.425771] (time_sync) StdoutLine: {'line': b'[ 75%] Built target firstSubscriber\n'}
+[0.500164] (-) TimerEvent: {}
+[0.600387] (-) TimerEvent: {}
+[0.700602] (-) TimerEvent: {}
+[0.800875] (-) TimerEvent: {}
+[0.901167] (-) TimerEvent: {}
+[1.001464] (-) TimerEvent: {}
+[1.101739] (-) TimerEvent: {}
+[1.202028] (-) TimerEvent: {}
+[1.302312] (-) TimerEvent: {}
+[1.402592] (-) TimerEvent: {}
+[1.502871] (-) TimerEvent: {}
+[1.603153] (-) TimerEvent: {}
+[1.703392] (-) TimerEvent: {}
+[1.803575] (-) TimerEvent: {}
+[1.843356] (time_sync) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:33\x1b[m\x1b[K,\n'}
+[1.843463] (time_sync) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/allocator.h:46\x1b[m\x1b[K,\n'}
+[1.843490] (time_sync) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/unordered_map:40\x1b[m\x1b[K,\n'}
+[1.843512] (time_sync) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/functional:61\x1b[m\x1b[K,\n'}
+[1.843531] (time_sync) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:2\x1b[m\x1b[K:\n'}
+[1.843551] (time_sync) StderrLine: {'line': b'/usr/include/c++/11/ext/new_allocator.h: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kvoid __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = MinimalPublisher; _Args = {}; _Tp = MinimalPublisher]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.843572] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/alloc_traits.h:516:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstatic void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = MinimalPublisher; _Args = {}; _Tp = MinimalPublisher; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<MinimalPublisher>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843595] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:519:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {}; _Tp = MinimalPublisher; _Alloc = std::allocator<MinimalPublisher>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843615] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:650:16:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = MinimalPublisher; _Alloc = std::allocator<MinimalPublisher>; _Args = {}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843634] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:1342:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<MinimalPublisher>; _Args = {}; _Tp = MinimalPublisher; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843656] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:409:59:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<MinimalPublisher>; _Args = {}; _Tp = MinimalPublisher]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843676] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:862:14:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::allocate_shared(const _Alloc&, _Args&& ...) [with _Tp = MinimalPublisher; _Alloc = std::allocator<MinimalPublisher>; _Args = {}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843696] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:878:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<_Tp> std::make_shared(_Args&& ...) [with _Tp = MinimalPublisher; _Args = {}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843715] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:55:50:\x1b[m\x1b[K   required from here\n'}
+[1.843734] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ext/new_allocator.h:162:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[KMinimalPublisher::MinimalPublisher()\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843754] (time_sync) StderrLine: {'line': b'  162 |         { \x1b[01;31m\x1b[K::new((void *)__p) _Up(std::forward<_Args>(__args)...)\x1b[m\x1b[K; }\n'}
+[1.843773] (time_sync) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.843792] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:19:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[KMinimalPublisher::MinimalPublisher(const string&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.843811] (time_sync) StderrLine: {'line': b'   19 |     \x1b[01;36m\x1b[KMinimalPublisher\x1b[m\x1b[K(const std::string &config_file)\n'}
+[1.843830] (time_sync) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.843847] (time_sync) StderrLine: {'line': b'\x1b[01m\x1b[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:19:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 1 argument, 0 provided\n'}
+[1.903655] (-) TimerEvent: {}
+[1.903814] (time_sync) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1\n'}
+[1.904020] (time_sync) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2\n'}
+[1.904204] (time_sync) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[1.905385] (time_sync) CommandEnded: {'returncode': 2}
+[1.923970] (time_sync) JobEnded: {'identifier': 'time_sync', 'rc': 2}
+[1.934492] (-) EventReactorShutdown: {}

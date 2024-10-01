@@ -1,0 +1,12 @@
+[0.005s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[0.031s] [35m[1mConsolidate compiler generated dependencies of target firstPublisher[0m
+[0.038s] [ 50%] Built target firstSubscriber
+[0.042s] [ 75%] [32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o[0m
+[1.112s] [01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[1.112s] [01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:28:51:[m[K [01;31m[Kerror: [m[K‘[01m[Kget_package_share_directory[m[K’ is not a member of ‘[01m[Kament_index_cpp[m[K’
+[1.112s]    28 |         std::string share_path = ament_index_cpp::[01;31m[Kget_package_share_directory[m[K("time_sync");
+[1.112s]       |                                                   [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.637s] gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+[1.637s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+[1.637s] gmake: *** [Makefile:146: all] Error 2
+[1.639s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32

@@ -1,0 +1,16 @@
+[0.005s] Invoking command in '/home/etharialle/github/ros_beginner/build/time_sync': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32
+[0.030s] [35m[1mConsolidate compiler generated dependencies of target firstPublisher[0m
+[0.038s] [ 50%] Built target firstSubscriber
+[0.041s] [ 75%] [32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o[0m
+[1.105s] [01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[1.105s] [01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:27:69:[m[K [01;31m[Kerror: [m[Ktoo few arguments to function ‘[01m[Kbool ament_index_cpp::get_resource(const string&, const string&, std::string&, std::string*)[m[K’
+[1.105s]    27 |         std::string config_file_path = [01;31m[Kament_index_cpp::get_resource("time_sync", "first_publisher.yaml")[m[K;
+[1.105s]       |                                        [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.105s] In file included from [01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:8[m[K:
+[1.105s] [01m[K/opt/ros/iron/include/ament_index_cpp/ament_index_cpp/get_resource.hpp:61:1:[m[K [01;36m[Knote: [m[Kdeclared here
+[1.105s]    61 | [01;36m[Kget_resource[m[K(
+[1.105s]       | [01;36m[K^~~~~~~~~~~~[m[K
+[1.622s] gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+[1.622s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+[1.622s] gmake: *** [Makefile:146: all] Error 2
+[1.624s] Invoked command in '/home/etharialle/github/ros_beginner/build/time_sync' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/etharialle/github/ros_beginner/build/time_sync -- -j32 -l32

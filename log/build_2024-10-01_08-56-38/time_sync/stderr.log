@@ -1,0 +1,7 @@
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/home/etharialle/github/ros_beginner/src/time_sync/src/first_publisher.cpp:26:40:[m[K [01;31m[Kerror: [m[K‘[01m[Kament_index_cpp[m[K’ has not been declared
+   26 |         std::string config_file_path = [01;31m[Kament_index_cpp[m[K::get_resource("time_sync", "first_publisher.yaml");
+      |                                        [01;31m[K^~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/firstPublisher.dir/build.make:76: CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/firstPublisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,3 @@
+[35m[1mConsolidate compiler generated dependencies of target firstPublisher[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/firstPublisher.dir/src/first_publisher.cpp.o[0m
+[ 75%] Built target firstSubscriber
