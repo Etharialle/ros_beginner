@@ -12,8 +12,6 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(yaml-cpp REQUIRED)
 
-
-
 add_executable(firstPublisher src/first_publisher.cpp)
 ament_target_dependencies(firstPublisher rclcpp std_msgs yaml-cpp ament_index_cpp)
 
@@ -31,6 +29,15 @@ install(TARGETS
 install(FILES
   src/first_publisher.yaml
   DESTINATION share/${PROJECT_NAME})
+
+# Include directories for header files
+include_directories(include)
+
+# Install header files
+install(DIRECTORY include/
+  DESTINATION include/)
+
+
 
 
 # uncomment the following section in order to fill in
