@@ -1,0 +1,122 @@
+# .github/workflows/main.yml
+
+name: C++ CI with Bazel
+
+# This workflow runs on every pull request that targets the 'main' branch.
+on:
+  pull_request:
+    branches: [ main ]
+
+# Permissions are required for the workflow to post a comment on the PR.
+permissions:
+  pull-requests: write # To add a PR comment
+  contents: read       # To check out the repository
+
+jobs:
+  # --- JOB 1: Build the binary ---
+  # This job quickly verifies that the code compiles.
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bazel
+        uses: bazelbuild/setup-bazel@v3
+        with:
+          # Use a specific Bazel version for reproducible builds
+          version: '7.1.1' 
+
+      - name: Build all targets
+        run: bazel build //...
+
+  # --- JOB 2: Run tests and report coverage ---
+  # This job depends on the 'build' job succeeding first.
+  test-and-coverage:
+    name: Test & Coverage
+    runs-on: ubuntu-latest
+    needs: build # This job will only run if the 'build' job is successful
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bazel
+        uses: bazelbuild/setup-bazel@v3
+        with:
+          version: '7.1.1'
+
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
+
+      - name: Run tests with coverage
+        run: bazel coverage --combined_report=lcov //...
+
+      - name: Process Coverage Report
+        id: coverage-summary
+        run: |
+          # Define the path to the raw coverage data
+          COVERAGE_DAT_FILE="bazel-out/_coverage/_coverage_report.dat"
+          
+          # Check if the coverage file exists
+          if [ ! -f "$COVERAGE_DAT_FILE" ]; then
+            echo "::error::Coverage report file not found at $COVERAGE_DAT_FILE"
+            exit 1
+          fi
+
+          # 1. GENERATE HTML REPORT for the artifact
+          genhtml "$COVERAGE_DAT_FILE" --output-directory coverage_report
+
+          # 2. EXTRACT THE TOTAL LINE COVERAGE PERCENTAGE
+          # Use lcov to get a text summary, find the 'lines' coverage, and extract the number.
+          COVERAGE_PERCENTAGE=$(lcov --summary "$COVERAGE_DAT_FILE" | grep 'lines......:' | awk '{print $2}' | sed 's/%//')
+          echo "Total line coverage is $COVERAGE_PERCENTAGE%"
+
+          # Make the percentage available to other steps
+          echo "percentage=${COVERAGE_PERCENTAGE}" >> $GITHUB_OUTPUT
+
+          # 3. CHECK IF COVERAGE IS BELOW THE THRESHOLD (50%)
+          # We use `bc` for floating point comparison.
+          # The `|| true` ensures the step doesn't fail, just shows a warning.
+          if (( $(echo "$COVERAGE_PERCENTAGE < 50" | bc -l) )); then
+            echo "::warning title=Low Code Coverage::Code coverage is ${COVERAGE_PERCENTAGE}%, which is below the 50% threshold."
+          else
+            echo "Code coverage is ${COVERAGE_PERCENTAGE}%, which meets the 50% threshold."
+          fi
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-html
+          path: coverage_report # The directory created by genhtml
+
+      - name: Add Coverage Comment to PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Get the coverage percentage from the previous step's output
+            const coveragePercentage = "${{ steps.coverage-summary.outputs.percentage }}";
+            
+            // Craft the comment body using Markdown
+            const body = `
+            ## Code Coverage Report 
+            
+            | Category          | Result                |
+            |-------------------|-----------------------|
+            | **Line Coverage** | **\`${coveragePercentage}%\`** |
+            
+            A detailed HTML report has been generated and can be downloaded from the [**action artifacts**](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            
+            *Coverage threshold: 50% (warning only)*
+            `;
+            
+            // Post the comment to the pull request
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body
+            });
