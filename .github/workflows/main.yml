@@ -23,6 +23,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Setup ROS2
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          distribution: iron
+      
       - name: Setup Bazel
         uses: bazelbuild/setup-bazel@v3
         with:
@@ -30,7 +35,9 @@ jobs:
           version: '7.1.1' 
 
       - name: Build all targets
-        run: bazel build //...
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          bazel build //...
 
   # --- JOB 2: Run tests and report coverage ---
   # This job depends on the 'build' job succeeding first.
@@ -43,6 +50,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Setup ROS2
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          distribution: iron
+      
       - name: Setup Bazel
         uses: bazelbuild/setup-bazel@v3
         with:
@@ -52,7 +64,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y lcov
 
       - name: Run tests with coverage
-        run: bazel coverage --combined_report=lcov //...
+        run: |
+          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          bazel coverage --combined_report=lcov //...
 
       - name: Process Coverage Report
         id: coverage-summary
