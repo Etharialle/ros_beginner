@@ -4,3 +4,4 @@ bazel-out/*
 bazel-ros_beginner/*
 bazel-testlogs/*
 bazel-*/*
+coverage_report/*
