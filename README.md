@@ -10,3 +10,8 @@ Using bazel as the build system
 .bazelrc includes the `--enable_workspace` flag
 
 `bazel run //src/talker:talker`
+
+
+## Testing Code Coverage
+
+Using `bazel coverage --combined_report=lcov //...`
