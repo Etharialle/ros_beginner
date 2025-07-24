@@ -26,7 +26,9 @@ jobs:
       - name: Setup ROS2
         uses: ros-tooling/setup-ros@v0.7
         with:
-          distribution: iron
+          required-ros-distributions: jazzy rolling
+        run: "source /opt/ros/jazzy/setup.bash && ros2 run --help"
+        run: "source /opt/ros/rolling/setup.bash && ros2 run --help"
       
       - name: Setup Bazel
         uses: bazelbuild/setup-bazelisk@v3
@@ -36,7 +38,7 @@ jobs:
 
       - name: Build all targets
         run: |
-          source /opt/ros/iron/setup.bash
+          source /opt/ros/jazzy/setup.bash
           bazel build //...
 
   # --- JOB 2: Run tests and report coverage ---
@@ -53,7 +55,9 @@ jobs:
       - name: Setup ROS2
         uses: ros-tooling/setup-ros@v0.7
         with:
-          distribution: iron
+          required-ros-distributions: jazzy rolling
+        run: "source /opt/ros/jazzy/setup.bash && ros2 run --help"
+        run: "source /opt/ros/rolling/setup.bash && ros2 run --help"
       
       - name: Setup Bazel
         uses: bazelbuild/setup-bazelisk@v3
@@ -65,7 +69,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          source /opt/ros/iron/setup.bash
+          source /opt/ros/jazzy/setup.bash
           bazel coverage --combined_report=lcov //...
 
       - name: Process Coverage Report
