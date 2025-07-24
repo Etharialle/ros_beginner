@@ -1,32 +1,44 @@
-load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
+load("@com_github_mvukov_rules_ros2//ros2:bag.bzl", "ros2_bag")
+load("@com_github_mvukov_rules_ros2//ros2:cc_defs.bzl", "ros2_cpp_binary", "ros2_cpp_library", "ros2_cpp_test")
+load("@com_github_mvukov_rules_ros2//ros2:launch.bzl", "ros2_launch")
+load("@com_github_mvukov_rules_ros2//ros2:topic.bzl", "ros2_topic")
 
-refresh_compile_commands(
-    name = "refresh_compile_commands",
-
-    # Specify the targets of interest.
-    # For example, specify a dict of targets and any flags required to build.
-    targets = {
-      "//:my_output_1": "--important_flag1 --important_flag2=true",
-      "//:my_output_2": "",
-    },
-    # No need to add flags already in .bazelrc. They're automatically picked up.
-    # If you don't need flags, a list of targets is also okay, as is a single target string.
-    # Wildcard patterns, like //... for everything, *are* allowed here, just like a build.
-      # As are additional targets (+) and subtractions (-), like in bazel query https://docs.bazel.build/versions/main/query.html#expressions
-    # And if you're working on a header-only library, specify a test or binary target that compiles it.
+ros2_cpp_library(
+    name = "ese_lib",
+    srcs = ["src/ese.cpp"],
+    hdrs = ["include/ese.hpp"],
+    includes = ["include"],
+    deps = [
+        "@ros2_rclcpp//:rclcpp",
+        "@ros2_common_interfaces//:cpp_std_msgs",
+    ],
 )
 
-alias(
-    name = "ros2_lifecycle",
-    actual = "@com_github_mvukov_rules_ros2//ros2:ros2_lifecycle",
+ros2_cpp_binary(
+    name = "ese_node", # Changed name to be more descriptive
+    srcs = ["src/main.cpp"],
+    deps = [
+        ":ese_lib", # Depends on our new library
+    ],
 )
 
-alias(
-    name = "ros2_param",
-    actual = "@com_github_mvukov_rules_ros2//ros2:ros2_param",
+ros2_cpp_test(
+    name = "ese_test",
+    size = "small",
+    srcs = ["test/ese_test.cpp"],
+    # The test needs to link against GTest, ROS, and our talker library
+    deps = [
+        ":ese_lib",
+        "@googletest//:gtest_main", # This brings in GTest
+    ],
 )
 
-alias(
-    name = "ros2_node",
-    actual = "@com_github_mvukov_rules_ros2//ros2:ros2_node",
-)
+#ros2_cpp_binary(
+#    name = "ese",
+#    srcs = ["ese.cpp"],
+#    hdrs = ["include/ese.hpp"],
+#    deps = [
+#        "@ros2_common_interfaces//:cpp_std_msgs",
+#        "@ros2_rclcpp//:rclcpp",
+#    ],
+#)
