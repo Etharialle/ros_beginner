@@ -27,7 +27,7 @@ jobs:
         uses: ros-tooling/setup-ros@v0.7
         with:
           required-ros-distributions: iron jazzy rolling
-        run: "source /opt/ros/iron/setup.bash && ros2 run --help"
+          run: "source /opt/ros/iron/setup.bash && ros2 run --help"
       
       - name: Setup Bazel
         uses: bazelbuild/setup-bazelisk@v3
@@ -55,7 +55,7 @@ jobs:
         uses: ros-tooling/setup-ros@v0.7
         with:
           required-ros-distributions: iron jazzy rolling
-        run: "source /opt/ros/iron/setup.bash && ros2 run --help"
+          run: "source /opt/ros/iron/setup.bash && ros2 run --help"
       
       - name: Setup Bazel
         uses: bazelbuild/setup-bazelisk@v3
