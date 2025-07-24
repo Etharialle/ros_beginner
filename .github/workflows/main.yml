@@ -36,7 +36,7 @@ jobs:
 
       - name: Build all targets
         run: |
-          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source /opt/ros/iron/setup.bash
           bazel build //...
 
   # --- JOB 2: Run tests and report coverage ---
@@ -65,7 +65,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          source /opt/ros/${{ matrix.ros_distro }}/setup.bash
+          source /opt/ros/iron/setup.bash
           bazel coverage --combined_report=lcov //...
 
       - name: Process Coverage Report
