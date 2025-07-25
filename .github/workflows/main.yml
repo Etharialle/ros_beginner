@@ -17,58 +17,40 @@ jobs:
   # This job quickly verifies that the code compiles.
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/etharialle/ros_beginner/ci-image:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Setup ROS2
-        uses: ros-tooling/setup-ros@v0.7
-        with:
-          required-ros-distributions: iron rolling
-          run: "source /opt/ros/iron/setup.bash && ros2 run --help"
-      
-      - name: Setup Bazel
-        uses: bazelbuild/setup-bazelisk@v3
-        with:
-          # Use a specific Bazel version for reproducible builds
-          version: '7.1.1' 
-
       - name: Build all targets
-        run: |
-          source /opt/ros/iron/setup.bash
-          bazel build //...
+        run: bazel build //...
 
   # --- JOB 2: Run tests and report coverage ---
   # This job depends on the 'build' job succeeding first.
   test-and-coverage:
     name: Test & Coverage
-    runs-on: ubuntu-22.04
+    
     needs: build # This job will only run if the 'build' job is successful
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/your-username/your-repo/ci-image:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Setup ROS2
-        uses: ros-tooling/setup-ros@v0.7
-        with:
-          required-ros-distributions: iron rolling
-          run: "source /opt/ros/iron/setup.bash && ros2 run --help"
-      
-      - name: Setup Bazel
-        uses: bazelbuild/setup-bazelisk@v3
-        with:
-          version: '7.1.1'
-
-      - name: Install lcov
-        run: sudo apt-get update && sudo apt-get install -y lcov
-
       - name: Run tests with coverage
-        run: |
-          source /opt/ros/iron/setup.bash
-          bazel coverage --combined_report=lcov //...
+        run: bazel coverage --combined_report=lcov //...
 
       - name: Process Coverage Report
         id: coverage-summary
