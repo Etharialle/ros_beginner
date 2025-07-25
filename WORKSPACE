@@ -29,11 +29,18 @@ protobuf_deps()
 
 # --- Dependency 3: ROS 2 Rules ---
 # Using a stable, versioned release instead of the 'main' branch.
-http_archive(
+#http_archive(
+#    name = "com_github_mvukov_rules_ros2",
+#    sha256 = "6130e8f61c1343fab7809e933c9faf47ab1e9fd4",
+#    strip_prefix = "rules_ros2-0.5.0",
+#    urls = ["https://github.com/mvukov/rules_ros2/archive/6130e8f61c1343fab7809e933c9faf47ab1e9fd4.zip"],
+#)
+
+git_repository(
     name = "com_github_mvukov_rules_ros2",
-    sha256 = "17f55f228448f103b0d5c80877a5180f2d1e289f812d091e92a17a47781b51e0",
-    strip_prefix = "rules_ros2-0.5.0",
-    urls = ["https://github.com/mvukov/rules_ros2/archive/refs/tags/v0.5.0.tar.gz"],
+    remote = "https://github.com/mvukov/rules_ros2.git",
+    #branch = "main"
+    commit = "6130e8f61c1343fab7809e933c9faf47ab1e9fd4"
 )
 # This function points Bazel to your system's ROS 2 installation.
 load(
