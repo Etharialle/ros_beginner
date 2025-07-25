@@ -1,101 +1,55 @@
-workspace(name = "test_nodes")
+# WORKSPACE
+
+# Define a name for your workspace
+workspace(name = "ros_beginner_workspace")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-
-
+# --- Dependency 1: C++ Rules ---
+# A common dependency for many C++ based rulesets.
 http_archive(
-    name = "hedron_compile_commands",
-
-    # Replace the commit hash (0e990032f3c5a866e72615cf67e5ce22186dcb97) in both places (below) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main), rather than using the stale one here.
-    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
-    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/refs/heads/main.tar.gz",
-    strip_prefix = "bazel-compile-commands-extractor-main",
-    # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
+    name = "rules_cc",
+    sha256 = "625473a393d0dd32f5838d2f5b5f6b2158869b360b38c0f592d3e4492a5a544f",
+    strip_prefix = "rules_cc-0972b212f451f80168e27c8d98d248de30c4e793",
+    urls = ["https://github.com/bazelbuild/rules_cc/archive/0972b212f451f80168e27c8d98d248de30c4e793.zip"],
 )
-load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
-hedron_compile_commands_setup()
-load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
-hedron_compile_commands_setup_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive_transitive()
 
+# --- Dependency 2: Protobuf Rules ---
+# A transitive dependency of rules_ros2 that was causing your error.
+# Defining it explicitly makes the build more robust.
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "292f79536a8af92021132f32c18b055e833f20822b31a31b20466479869899a2",
+    strip_prefix = "protobuf-21.7",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v21.7.zip"],
+)
+# This function loads Protobuf's own dependencies, fixing your error.
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+protobuf_deps()
 
-# This import is relevant for these examples and this (rules_ros2) repository.
-# local_repository(
-#     name = "com_github_mvukov_rules_ros2",
-#     path = "..",
-# )
-
-# In a normal workflow, you would typically import rules_ros2 into your
-# (mono)repo as follows:
-# http_archive(
-#     name = "com_github_mvukov_rules_ros2",
-#     # Here you can use e.g. sha256sum cli utility to compute the sha sum.
-#     sha256 = "<sha sum of the .tar.gz archive below>",
-#     strip_prefix = "rules_ros2-main",
-#     url = "https://github.com/mvukov/rules_ros2/archive/refs/heads/main.zip",
-# )
-
-git_repository(
+# --- Dependency 3: ROS 2 Rules ---
+# Using a stable, versioned release instead of the 'main' branch.
+http_archive(
     name = "com_github_mvukov_rules_ros2",
-    remote = "https://github.com/mvukov/rules_ros2.git",
-    branch = "main"
+    sha256 = "17f55f228448f103b0d5c80877a5180f2d1e289f812d091e92a17a47781b51e0",
+    strip_prefix = "rules_ros2-0.5.0",
+    urls = ["https://github.com/mvukov/rules_ros2/archive/refs/tags/v0.5.0.tar.gz"],
 )
-
-
-
-load("@com_github_mvukov_rules_ros2//repositories:repositories.bzl", "ros2_repositories", "ros2_workspace_repositories")
-
-ros2_workspace_repositories()
-
-ros2_repositories()
-
-load("@com_github_mvukov_rules_ros2//repositories:deps.bzl", "ros2_deps")
-
-ros2_deps()
-
-load("@rules_python//python:repositories.bzl", "py_repositories", "python_register_toolchains")
-
-py_repositories()
-
-python_register_toolchains(
-    name = "rules_ros2_python",
-    python_version = "3.10",
-)
-
-load("@rules_python//python:pip.bzl", "pip_parse")
-
-pip_parse(
-    name = "rules_ros2_pip_deps",
-    python_interpreter_target = "@rules_ros2_python_host//:python",
-    requirements_lock = "@com_github_mvukov_rules_ros2//:requirements_lock.txt",
-)
-
+# This function points Bazel to your system's ROS 2 installation.
 load(
-    "@rules_ros2_pip_deps//:requirements.bzl",
-    install_rules_ros2_pip_deps = "install_deps",
+    "@com_github_mvukov_rules_ros2//ros2:repositories.bzl",
+    "ros2_repositories",
+)
+ros2_repositories(
+    distro_name = "iron", # Make sure this matches your Dockerfile and CI
+    ament_prefix_path = "/opt/ros/iron",
 )
 
-install_rules_ros2_pip_deps()
-
-# Below is an optional setup for Rust support for ROS 2.
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_1.bzl", "rust_setup_stage_1")
-
-rust_setup_stage_1()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_2.bzl", "rust_setup_stage_2")
-
-rust_setup_stage_2()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_3.bzl", "rust_setup_stage_3")
-
-rust_setup_stage_3()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_4.bzl", "rust_setup_stage_4")
-
-rust_setup_stage_4()
+# --- Dependency 4: GoogleTest ---
+# Required for your `ros2_cpp_test` target.
+http_archive(
+    name = "googletest",
+    sha256 = "b487069925d69341050341071443657366d8e80544c32986847c2d110d0d2105",
+    strip_prefix = "googletest-release-1.12.1",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip"],
+)
