@@ -1,101 +1,38 @@
-workspace(name = "test_nodes")
+# WORKSPACE
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+workspace(name = "ros_beginner_workspace")
+
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-
-
-http_archive(
-    name = "hedron_compile_commands",
-
-    # Replace the commit hash (0e990032f3c5a866e72615cf67e5ce22186dcb97) in both places (below) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main), rather than using the stale one here.
-    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
-    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/refs/heads/main.tar.gz",
-    strip_prefix = "bazel-compile-commands-extractor-main",
-    # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
-)
-load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
-hedron_compile_commands_setup()
-load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
-hedron_compile_commands_setup_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive_transitive()
-
-
-# This import is relevant for these examples and this (rules_ros2) repository.
-# local_repository(
-#     name = "com_github_mvukov_rules_ros2",
-#     path = "..",
-# )
-
-# In a normal workflow, you would typically import rules_ros2 into your
-# (mono)repo as follows:
-# http_archive(
-#     name = "com_github_mvukov_rules_ros2",
-#     # Here you can use e.g. sha256sum cli utility to compute the sha sum.
-#     sha256 = "<sha sum of the .tar.gz archive below>",
-#     strip_prefix = "rules_ros2-main",
-#     url = "https://github.com/mvukov/rules_ros2/archive/refs/heads/main.zip",
-# )
-
+# --- Dependency 1: The entire drake-ros repository via git_repository ---
+# This bypasses the http cache and guarantees the patch will be applied.
 git_repository(
-    name = "com_github_mvukov_rules_ros2",
-    remote = "https://github.com/mvukov/rules_ros2.git",
-    branch = "main"
+    name = "drake_ros_rules",
+    remote = "https://github.com/RobotLocomotion/drake-ros.git",
+    # Pinning to a recent, known-good commit from July 2024.
+    commit = "6f5f05d1b819797f2852b789da7b716c589a82de",
+    # These patch commands will now run on the fresh clone.
+    patch_cmds = [
+        "touch bazel_ros2_rules/deps/cpython/BUILD.bazel",
+    ],
 )
 
+# --- Dependency 2: Load the dependencies for the new rules ---
+load("@drake_ros_rules//bazel_ros2_rules/deps:defs.bzl", "add_bazel_ros2_rules_dependencies")
+add_bazel_ros2_rules_dependencies()
 
-
-load("@com_github_mvukov_rules_ros2//repositories:repositories.bzl", "ros2_repositories", "ros2_workspace_repositories")
-
-ros2_workspace_repositories()
-
-ros2_repositories()
-
-load("@com_github_mvukov_rules_ros2//repositories:deps.bzl", "ros2_deps")
-
-ros2_deps()
-
-load("@rules_python//python:repositories.bzl", "py_repositories", "python_register_toolchains")
-
-py_repositories()
-
-python_register_toolchains(
-    name = "rules_ros2_python",
-    python_version = "3.10",
+# --- Dependency 3: Bind your local ROS 2 installation ---
+load("@drake_ros_rules//bazel_ros2_rules/ros2:defs.bzl", "ros2_local_repository")
+ros2_local_repository(
+    name = "ros2",
+    workspaces = ["/opt/ros/iron"],
 )
 
-load("@rules_python//python:pip.bzl", "pip_parse")
-
-pip_parse(
-    name = "rules_ros2_pip_deps",
-    python_interpreter_target = "@rules_ros2_python_host//:python",
-    requirements_lock = "@com_github_mvukov_rules_ros2//:requirements_lock.txt",
+# --- Dependency 4: GoogleTest ---
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "b487069925d69341050341071443657366d8e80544c32986847c2d110d0d2105",
+    strip_prefix = "googletest-release-1.12.1",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip"],
 )
-
-load(
-    "@rules_ros2_pip_deps//:requirements.bzl",
-    install_rules_ros2_pip_deps = "install_deps",
-)
-
-install_rules_ros2_pip_deps()
-
-# Below is an optional setup for Rust support for ROS 2.
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_1.bzl", "rust_setup_stage_1")
-
-rust_setup_stage_1()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_2.bzl", "rust_setup_stage_2")
-
-rust_setup_stage_2()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_3.bzl", "rust_setup_stage_3")
-
-rust_setup_stage_3()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_4.bzl", "rust_setup_stage_4")
-
-rust_setup_stage_4()
