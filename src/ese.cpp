@@ -10,7 +10,7 @@ Talker::Talker() : Node("ese") {
 
 void Talker::publish_message() {
     auto message = std_msgs::msg::String();
-    message.data = "Ego State";
+    message.data = "Ego State test";
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
     publisher_->publish(message);
 }
