@@ -44,14 +44,18 @@ git_repository(
     commit = "6130e8f61c1343fab7809e933c9faf47ab1e9fd4"
 )
 # This function points Bazel to your system's ROS 2 installation.
-load(
-    "@com_github_mvukov_rules_ros2//ros2:repositories.bzl",
-    "ros2_repositories",
-)
+load("@com_github_mvukov_rules_ros2//repositories:repositories.bzl", "ros2_repositories", "ros2_workspace_repositories")
+
+ros2_workspace_repositories()
+
 ros2_repositories(
     distro_name = "iron", # Make sure this matches your Dockerfile and CI
     ament_prefix_path = "/opt/ros/iron",
 )
+
+load("@com_github_mvukov_rules_ros2//repositories:deps.bzl", "ros2_deps")
+
+ros2_deps()
 
 # --- Dependency 4: GoogleTest ---
 # Required for your `ros2_cpp_test` target.
