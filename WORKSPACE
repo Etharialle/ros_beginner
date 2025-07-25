@@ -19,7 +19,7 @@ http_archive(
 # Defining it explicitly makes the build more robust.
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "292f79536a8af92021132f32c18b055e833f20822b31a31b20466479869899a2",
+    sha256 = "e13ca6c2f1522924b8482f3b3a482427d0589ff8ea251088f7e39f4713236053",
     strip_prefix = "protobuf-21.7",
     urls = ["https://github.com/protocolbuffers/protobuf/archive/v21.7.zip"],
 )
