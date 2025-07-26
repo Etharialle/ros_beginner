@@ -57,8 +57,11 @@ build:clang --repo_env=CC=clang
 build:clang --repo_env=CXX=clang++
 build:clang --linkopt="-fuse-ld=lld"
 
-build --compiler=clang
-test --compiler=clang
+test:clang --repo_env=CC=clang
+test:clang --repo_env=CXX=clang++
+test:clang --linkopt="-fuse-ld=lld"
+
+
 
 # Load any settings specific to the current user.
 # user.bazelrc should appear in .gitignore so that settings are not shared with
