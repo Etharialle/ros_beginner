@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 RUN apt-get update && apt-get install -y \
-    ros-$ROS_DISTRO-ros-base \
+    ros-$ROS_DISTRO-desktop \
     ros-dev-tools \
     && rm -rf /var/lib/apt/lists/*
 
@@ -28,10 +28,13 @@ RUN apt-get update && apt-get install -y apt-transport-https
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/bazel.gpg
 RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
 RUN apt-get update && apt-get install -y \
-    bazel=7.1.1 \
+    bazel \
     lcov \
     clang \
     && rm -rf /var/lib/apt/lists/*
+
+#RUN curl -L -o /usr/local/bin/bazel "https://github.com/bazelbuild/bazelisk/releases/download/v${BAZELISK_VERSION}/bazelisk-linux-amd64" \
+#    && chmod +x /usr/local/bin/bazel
 
 # Step 6: Configure the environment
 # Automatically source ROS 2 for every new shell session.

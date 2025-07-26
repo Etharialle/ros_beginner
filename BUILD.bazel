@@ -32,13 +32,3 @@ ros2_cpp_test(
         "@googletest//:gtest_main", # This brings in GTest
     ],
 )
-
-#ros2_cpp_binary(
-#    name = "ese",
-#    srcs = ["ese.cpp"],
-#    hdrs = ["include/ese.hpp"],
-#    deps = [
-#        "@ros2_common_interfaces//:cpp_std_msgs",
-#        "@ros2_rclcpp//:rclcpp",
-#    ],
-#)
