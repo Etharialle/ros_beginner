@@ -50,6 +50,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Install llvm
+        run: apt install llvm
       - name: Run tests with coverage
         run: bazel coverage --action_env=CC=clang --action_env=CXX=clang++ --cxxopt='-fprofile-instr-generate' --cxxopt='-fcoverage-mapping' --linkopt='-fprofile-instr-generate' --combined_report=lcov //...
 
