@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     ros-dev-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Step 5: Install Bazel 7.1.1 and other required tools (lcov, clang)
+# Step 5: Install Bazel 8.3.1 and other required tools (lcov, clang)
 RUN apt-get update && apt-get install -y apt-transport-https
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/bazel.gpg
 RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
