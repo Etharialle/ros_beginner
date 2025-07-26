@@ -8,6 +8,10 @@ ros2_cpp_library(
     srcs = ["src/ese.cpp"],
     hdrs = ["include/ese.hpp"],
     includes = ["include"],
+    copts = select({
+        "//command_line_config:coverage": ["--coverage"],
+        "//conditions:default": [],
+    }),
     deps = [
         "@ros2_rclcpp//:rclcpp",
         "@ros2_common_interfaces//:cpp_std_msgs",
