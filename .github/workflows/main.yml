@@ -41,7 +41,7 @@ jobs:
     needs: build # This job will only run if the 'build' job is successful
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/your-username/your-repo/ci-image:main
+      image: ghcr.io/etharialle/ros_beginner/ci-image:main
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
