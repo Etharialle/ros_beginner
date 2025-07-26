@@ -6,6 +6,7 @@ name: C++ CI with Bazel
 on:
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 # Permissions are required for the workflow to post a comment on the PR.
 permissions:
