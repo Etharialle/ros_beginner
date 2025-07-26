@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     bazel \
     lcov \
     clang \
+    llvm \
     && rm -rf /var/lib/apt/lists/*
 
 #RUN curl -L -o /usr/local/bin/bazel "https://github.com/bazelbuild/bazelisk/releases/download/v${BAZELISK_VERSION}/bazelisk-linux-amd64" \

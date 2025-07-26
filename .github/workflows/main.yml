@@ -41,7 +41,7 @@ jobs:
     needs: build # This job will only run if the 'build' job is successful
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/your-username/your-repo/ci-image:main
+      image: ghcr.io/etharialle/ros_beginner/ci-image:main
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run tests with coverage
-        run: bazel coverage --combined_report=lcov //...
+        run: bazel coverage --action_env=CC=clang --action_env=CXX=clang++ --cxxopt='-fprofile-instr-generate' --cxxopt='-fcoverage-mapping' --linkopt='-fprofile-instr-generate' --combined_report=lcov //...
 
       - name: Process Coverage Report
         id: coverage-summary
