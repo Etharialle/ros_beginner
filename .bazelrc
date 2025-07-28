@@ -56,6 +56,7 @@ test --test_output=errors
 build:clang --repo_env=CC=clang
 build:clang --repo_env=CXX=clang++
 #build:clang --linkopt="-fuse-ld=lld"
+build:coverage_build --define=coverage_enabled=true
 
 test:clang --repo_env=CC=clang
 test:clang --repo_env=CXX=clang++
