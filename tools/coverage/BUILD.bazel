@@ -23,8 +23,8 @@ cc_toolchain(
 # specifically overriding the gcov tool path.
 toolchain(
     name = "cc-clang-coverage-config",
-    compiler = "clang",
-    cpu = "k8", # A common default, adjust if needed for your architecture
+    #compiler = "clang",
+    #cpu = "k8", # A common default, adjust if needed for your architecture
     cxx_flag = ["-std=c++17"],
     linker_flag = ["-lm"],
     toolchain_identifier = "clang-coverage-toolchain",
