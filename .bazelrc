@@ -61,7 +61,8 @@ test:clang --repo_env=CC=clang
 test:clang --repo_env=CXX=clang++
 test:clang --linkopt="-fuse-ld=lld"
 
-
+coverage --copt=--coverage
+coverage --linkopt=--coverage
 
 # Load any settings specific to the current user.
 # user.bazelrc should appear in .gitignore so that settings are not shared with
