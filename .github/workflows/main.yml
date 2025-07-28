@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run tests with coverage
-        run: bazel coverage --config=clang --combined_report=lcov //...
+        run: bazel coverage --config=clang --combined_report=lcov //... --nocache_test_results -- --experimental_use_llvm_covmap
 
       - name: Process Coverage Report
         id: coverage-summary
