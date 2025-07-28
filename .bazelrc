@@ -56,12 +56,14 @@ test --test_output=errors
 build:clang --repo_env=CC=clang
 build:clang --repo_env=CXX=clang++
 build:clang --linkopt="-fuse-ld=lld"
+build:clang --crosstool_top=//tools/coverage:cc-clang-coverage-toolchain
 #coverage --experimental_generate_llvm_lcov
 coverage --copt=--coverage
 coverage --linkopt=--coverage
 coverage --linkopt="-fuse-ld=lld"
 coverage:clang --compiler=clang
 coverage --config=clang
+coverage --crosstool_top=//tools/coverage:cc-clang-coverage-toolchain
 
 test:clang --repo_env=CC=clang
 test:clang --repo_env=CXX=clang++
