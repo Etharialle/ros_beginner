@@ -1,4 +1,6 @@
 # tools/coverage/BUILD.bazel
+load("@bazel_tools//tools/cpp:cc_toolchain.bzl", "cc_toolchain")
+load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "cc_toolchain_config", "tool_path")
 
 package(default_visibility = ["//visibility:public"])
 
