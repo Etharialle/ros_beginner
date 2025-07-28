@@ -24,7 +24,7 @@ cc_toolchain(
 # This defines the configuration for our Clang toolchain,
 # specifically overriding the gcov tool path.
 toolchain(
-    name = "cc-clang-coverage-toolchain",
+    name = "clang-coverage-toolchain",
     #compiler = "clang",
     #cpu = "k8", # A common default, adjust if needed for your architecture
     toolchain = ":cc-clang-coverage-toolchain",
