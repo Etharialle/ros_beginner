@@ -4,6 +4,8 @@ load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "tool_path")
 
 package(default_visibility = ["//visibility:public"])
 
+load(":cc_clang_coverage_config.bzl", "cc_toolchain_config")
+
 # This creates the actual toolchain target that Bazel can use.
 cc_toolchain(
     name = "cc-clang-coverage-toolchain",
@@ -25,23 +27,25 @@ toolchain(
     name = "cc-clang-coverage-config",
     #compiler = "clang",
     #cpu = "k8", # A common default, adjust if needed for your architecture
-    cxx_flag = ["-std=c++17"],
-    linker_flag = ["-lm"],
-    toolchain_identifier = "clang-coverage-toolchain",
-    tool_path = [
-        # This is the key change: we point the 'gcov' tool to our wrapper script.
-        tool_path(name = "gcov", path = "llvm-gcov-wrapper.sh"),
-        # Define other tools to make the toolchain complete.
-        # Adjust these paths if clang/ld are not in your system's default PATH.
-        tool_path(name = "ar", path = "/usr/bin/ar"),
-        tool_path(name = "cpp", path = "/usr/bin/clang-c++"),
-        tool_path(name = "gcc", path = "/usr/bin/clang"),
-        tool_path(name = "ld", path = "/usr/bin/ld"),
-        tool_path(name = "nm", path = "/usr/bin/nm"),
-        tool_path(name = "objcopy", path = "/usr/bin/objcopy"),
-        tool_path(name = "objdump", path = "/usr/bin/objdump"),
-        tool_path(name = "strip", path = "/usr/bin/strip"),
-    ],
+    toolchain = ":cc-clang-coverage-toolchain"
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+    #cxx_flag = ["-std=c++17"],
+    #linker_flag = ["-lm"],
+    #toolchain_identifier = "clang-coverage-toolchain",
+    #tool_path = [
+    #    # This is the key change: we point the 'gcov' tool to our wrapper script.
+    #    tool_path(name = "gcov", path = "llvm-gcov-wrapper.sh"),
+    #    # Define other tools to make the toolchain complete.
+    #    # Adjust these paths if clang/ld are not in your system's default PATH.
+    #    tool_path(name = "ar", path = "/usr/bin/ar"),
+    #    tool_path(name = "cpp", path = "/usr/bin/clang-c++"),
+    #    tool_path(name = "gcc", path = "/usr/bin/clang"),
+    #    tool_path(name = "ld", path = "/usr/bin/ld"),
+    #    tool_path(name = "nm", path = "/usr/bin/nm"),
+    #    tool_path(name = "objcopy", path = "/usr/bin/objcopy"),
+    #    tool_path(name = "objdump", path = "/usr/bin/objdump"),
+    #    tool_path(name = "strip", path = "/usr/bin/strip"),
+    #],
 )
 
 

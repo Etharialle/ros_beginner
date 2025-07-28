@@ -1,0 +1,55 @@
+def _impl(ctx):
+    tool_paths = [ # NEW
+        tool_path(name = "gcov", path = "llvm-gcov-wrapper.sh"),
+        tool_path(
+            name = "gcc",  # Compiler is referenced by the name "gcc" for historic reasons.
+            path = "/usr/bin/clang",
+        ),
+        tool_path(
+            name = "ld",
+            path = "/usr/bin/ld",
+        ),
+        tool_path(
+            name = "ar",
+            path = "/usr/bin/ar",
+        ),
+        tool_path(
+            name = "cpp",
+            path = "/bin/false",
+        ),
+        tool_path(
+            name = "gcov",
+            path = "/bin/false",
+        ),
+        tool_path(
+            name = "nm",
+            path = "/bin/false",
+        ),
+        tool_path(
+            name = "objdump",
+            path = "/bin/false",
+        ),
+        tool_path(
+            name = "strip",
+            path = "/bin/false",
+        ),
+    ]
+    
+    
+    return cc_common.create_cc_toolchain_config_info(
+        ctx = ctx,
+        toolchain_identifier = "k8-toolchain",
+        host_system_name = "local",
+        target_system_name = "local",
+        target_cpu = "k8",
+        target_libc = "unknown",
+        compiler = "clang",
+        abi_version = "unknown",
+        abi_libc_version = "unknown",
+    )
+
+cc_toolchain_config = rule(
+    implementation = _impl,
+    attrs = {},
+    provides = [CcToolchainConfigInfo],
+)
