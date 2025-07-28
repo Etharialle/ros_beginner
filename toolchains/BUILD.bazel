@@ -1,0 +1,8 @@
+# This makes our toolchain rule visible to the rest of the workspace.
+package(default_visibility = ["//visibility:public"])
+
+# Load our custom rule from the .bzl file.
+load(":cc_toolchain_config.bzl", "cc_toolchain_config")
+
+# Instantiate the rule to create a target.
+cc_toolchain_config(name = "ros_toolchain_config")

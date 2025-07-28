@@ -3,8 +3,6 @@ workspace(name = "test_nodes")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-
-
 http_archive(
     name = "hedron_compile_commands",
 
@@ -82,20 +80,28 @@ load(
 
 install_rules_ros2_pip_deps()
 
-# Below is an optional setup for Rust support for ROS 2.
+load("@bazel_tools//tools/cpp:toolchains.bzl", "cc_toolchain_suite")
 
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_1.bzl", "rust_setup_stage_1")
+cc_toolchain_suite(
+    name = "ros_toolchain",
+    toolchains = {
+        "k8|clang": ":cc-compiler-k8",
+    },
+)
 
-rust_setup_stage_1()
+# Create a toolchain that uses our custom config with the fix.
+native.cc_toolchain(
+    name = "cc-compiler-k8",
+    toolchain_config = "//toolchain:ros_toolchain_config",
+    # The rest of these attributes point to the standard Bazel toolchain parts.
+    all_files = "@bazel_tools//tools/cpp:compiler_fallback",
+    compiler_files = "@bazel_tools//tools/cpp:compiler_fallback",
+    dwp_files = "@bazel_tools//tools/cpp:dwp_fallback",
+    linker_files = "@bazel_tools//tools/cpp:linker_fallback",
+    objcopy_files = "@bazel_tools//tools/cpp:objcopy_fallback",
+    static_runtime_libs = "@bazel_tools//tools/cpp:runtime_libs",
+    strip_files = "@bazel_tools//tools/cpp:strip_fallback",
+)
 
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_2.bzl", "rust_setup_stage_2")
-
-rust_setup_stage_2()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_3.bzl", "rust_setup_stage_3")
-
-rust_setup_stage_3()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_4.bzl", "rust_setup_stage_4")
-
-rust_setup_stage_4()
+# Register our toolchain suite so Bazel uses it.
+native.register_toolchains("//:ros_toolchain")
