@@ -80,7 +80,7 @@ load(
 
 install_rules_ros2_pip_deps()
 
-load("@bazel_tools//tools/cpp:toolchains.bzl", "cc_toolchain_suite")
+load("@rules_cc//cc/toolchains:cc_toolchain_suite.bzl", "cc_toolchain_suite")
 
 cc_toolchain_suite(
     name = "ros_toolchain",
