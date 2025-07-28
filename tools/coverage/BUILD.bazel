@@ -27,7 +27,7 @@ toolchain(
     name = "cc-clang-coverage-toolchain",
     #compiler = "clang",
     #cpu = "k8", # A common default, adjust if needed for your architecture
-    toolchain = ":cc-clang-coverage-toolchain"
+    toolchain = ":cc-clang-coverage-toolchain",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
     exec_compatible_with = [],
     target_compatible_with = [],
