@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run tests with coverage
-        run: bazel coverage --config=clang --instrumentation_filter="//..." --experimental_generate_llvm_lcov //...
+        run: bazel coverage --config=clang --instrumentation_filter="//..." --experimental_generate_llvm_lcov --combined_report=lcov //...
 
       - name: Process LLVM Coverage Report
         id: coverage-summary
