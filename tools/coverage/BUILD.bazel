@@ -4,7 +4,7 @@ load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "tool_path")
 
 package(default_visibility = ["//visibility:public"])
 
-load(":cc_clang_coverage_config.bzl", "cc_toolchain_config")
+load(":cc_clang_coverage_config.bzl", "clang_cc_toolchain_config")
 
 # This creates the actual toolchain target that Bazel can use.
 cc_toolchain(

@@ -1,6 +1,6 @@
 load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "feature", "tool_path", "action_config", "flag_group", "tool", "cc_toolchain_config")
 
-def cc_toolchain_config(ctx):
+def clang_cc_toolchain_config(ctx):
     return cc_toolchain_config(
         toolchain_identifier = "cc-clang-coverage-toolchain",
         host_system_name = "local",
