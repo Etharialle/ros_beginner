@@ -3,8 +3,6 @@ load("@com_github_mvukov_rules_ros2//ros2:cc_defs.bzl", "ros2_cpp_binary", "ros2
 load("@com_github_mvukov_rules_ros2//ros2:launch.bzl", "ros2_launch")
 load("@com_github_mvukov_rules_ros2//ros2:topic.bzl", "ros2_topic")
 
-load("@bazel_tools//tools/build_defs/cc:config_setting.bzl", "config_setting")
-
 config_setting(
     name = "coverage_enabled",
     define_values = {"coverage_enabled": "true"},
