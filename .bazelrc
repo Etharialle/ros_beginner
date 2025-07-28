@@ -55,14 +55,17 @@ test --test_output=errors
 # To use a clang compiler, invoke Bazel with `--config=clang`.
 build:clang --repo_env=CC=clang
 build:clang --repo_env=CXX=clang++
-#build:clang --linkopt="-fuse-ld=lld"
+build:clang --linkopt="-fuse-ld=lld"
 #coverage --experimental_generate_llvm_lcov
 coverage --copt=--coverage
 coverage --linkopt=--coverage
+coverage --linkopt="-fuse-ld=lld"
+coverage:clang --compiler=clang
+coverage --config=clang
 
 test:clang --repo_env=CC=clang
 test:clang --repo_env=CXX=clang++
-#test:clang --linkopt="-fuse-ld=lld"
+test:clang --linkopt="-fuse-ld=lld"
 
 # Load any settings specific to the current user.
 # user.bazelrc should appear in .gitignore so that settings are not shared with

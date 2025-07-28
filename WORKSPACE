@@ -1,5 +1,7 @@
 workspace(name = "test_nodes")
 
+register_toolchains("//tools/coverage:cc-clang-coverage-toolchain")
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
@@ -80,28 +82,3 @@ load(
 
 install_rules_ros2_pip_deps()
 
-load("@rules_cc//cc/toolchains:cc_toolchain_suite.bzl", "cc_toolchain_suite")
-
-cc_toolchain_suite(
-    name = "ros_toolchain",
-    toolchains = {
-        "k8|clang": ":cc-compiler-k8",
-    },
-)
-
-# Create a toolchain that uses our custom config with the fix.
-native.cc_toolchain(
-    name = "cc-compiler-k8",
-    toolchain_config = "//toolchain:ros_toolchain_config",
-    # The rest of these attributes point to the standard Bazel toolchain parts.
-    all_files = "@bazel_tools//tools/cpp:compiler_fallback",
-    compiler_files = "@bazel_tools//tools/cpp:compiler_fallback",
-    dwp_files = "@bazel_tools//tools/cpp:dwp_fallback",
-    linker_files = "@bazel_tools//tools/cpp:linker_fallback",
-    objcopy_files = "@bazel_tools//tools/cpp:objcopy_fallback",
-    static_runtime_libs = "@bazel_tools//tools/cpp:runtime_libs",
-    strip_files = "@bazel_tools//tools/cpp:strip_fallback",
-)
-
-# Register our toolchain suite so Bazel uses it.
-native.register_toolchains("//:ros_toolchain")
