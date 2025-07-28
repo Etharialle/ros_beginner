@@ -1,8 +1,23 @@
 # tools/coverage/BUILD.bazel
-load("@bazel_tools//tools/cpp:cc_toolchain.bzl", "cc_toolchain")
+#load("@bazel_tools//tools/cpp:cc_toolchain.bzl", "cc_toolchain")
 load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "cc_toolchain_config", "tool_path")
 
 package(default_visibility = ["//visibility:public"])
+
+# This creates the actual toolchain target that Bazel can use.
+cc_toolchain(
+    name = "cc-clang-coverage-toolchain",
+    toolchain_identifier = "clang-coverage-toolchain",
+    toolchain_config = ":cc-clang-coverage-config",
+    # Point to the wrapper script and other files needed by the toolchain.
+    all_files = ":wrapper",
+    compiler_files = ":wrapper",
+    dwp_files = ":empty",
+    linker_files = ":wrapper",
+    objcopy_files = ":empty",
+    strip_files = ":empty",
+    supports_param_files = 1,
+)
 
 # This defines the configuration for our Clang toolchain,
 # specifically overriding the gcov tool path.
@@ -29,20 +44,7 @@ cc_toolchain_config(
     ],
 )
 
-# This creates the actual toolchain target that Bazel can use.
-cc_toolchain(
-    name = "cc-clang-coverage-toolchain",
-    toolchain_config = ":cc-clang-coverage-config",
-    toolchain_identifier = "clang-coverage-toolchain",
-    # Point to the wrapper script and other files needed by the toolchain.
-    all_files = ":wrapper",
-    compiler_files = ":wrapper",
-    dwp_files = ":empty",
-    linker_files = ":wrapper",
-    objcopy_files = ":empty",
-    strip_files = ":empty",
-    supports_param_files = 1,
-)
+
 
 # A filegroup to bundle the wrapper script for the toolchain.
 filegroup(
