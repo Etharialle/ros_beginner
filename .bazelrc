@@ -40,7 +40,7 @@ build:clang --linkopt=-fcoverage-mapping
 # --- COVERAGE CONFIGURATION (CORRECTED) ---
 
 # This line activates the clang configuration above for all coverage builds.
-coverage --config=clang
+#coverage --config=clang
 
 # This is the single, most important line. It tells Bazel to use
 # the toolchain we have been building.

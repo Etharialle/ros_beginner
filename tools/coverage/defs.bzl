@@ -80,7 +80,7 @@ def _etharialle_cc_toolchain_config_impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            "--coverage",
+                            #"--coverage",
                             "-fprofile-arcs",
                             "-ftest-coverage",
                         ],
