@@ -32,7 +32,7 @@ def _etharialle_cc_toolchain_config_impl(ctx):
     ]
     cxx_link_executable_action = action_config(
         action_name = "c++-link-executable",
-        tools = [tool_path(name = "clang")], # Should be clang++ if using clang
+        tools = [tool_path(name = "clang", path = "/usr/bin/clang")], # Should be clang++ if using clang
         flag_sets = [
             flag_set(
                 actions = ["c++-link-executable"],
