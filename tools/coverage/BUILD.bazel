@@ -17,9 +17,9 @@ cc_toolchain(
     toolchain_config = ":etharialle_toolchain_config_impl",
     # Point to the wrapper script and other files needed by the toolchain.
     all_files = ":wrapper",
-    compiler_files = ":wrapper",
+    compiler_files = ":empty", #:wrapper previously
     dwp_files = ":empty",
-    linker_files = ":wrapper",
+    linker_files = ":empty", #:wrapper previously
     objcopy_files = ":empty",
     strip_files = ":empty",
     supports_param_files = 1,
