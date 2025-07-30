@@ -16,6 +16,12 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         tool_path(name = "objdump", path = "/usr/bin/objdump"),
         tool_path(name = "strip", path = "/usr/bin/strip"),
     ]
+    builtin_include_dirs = [
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include",
+        # This path is specific to Clang 14.
+        "/usr/lib/llvm-14/lib/clang/14.0.0/include",
+    ]
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
@@ -28,7 +34,8 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         compiler = "clang",
         abi_version = "local",
         abi_libc_version = "local",
-        toolchain_identifier = "etharialle_coverage"
+        toolchain_identifier = "etharialle_coverage",
+        cxx_builtin_include_directories = builtin_include_dirs
     )
 
 etharialle_cc_toolchain_config = rule(
