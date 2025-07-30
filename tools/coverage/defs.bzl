@@ -7,9 +7,9 @@ def _etharialle_cc_toolchain_config_impl(ctx):
     # The names (gcc, ld, ar, etc.) are conventional keys that Bazel understands.
     tool_paths = [
         tool_path(name = "ar", path = "/usr/bin/ar"),
-        tool_path(name = "cpp", path = "/usr/bin/clang++"),
-        tool_path(name = "gcc", path = "/usr/bin/clang++"),
-        tool_path(name = "clang", path = "/usr/bin/clang++"),
+        tool_path(name = "cpp", path = "/usr/bin/clang-cpp-14"),
+        tool_path(name = "gcc", path = "/usr/bin/clang-cpp-14"),
+        tool_path(name = "clang", path = "/usr/bin/clang-cpp-14"),
         tool_path(name = "gcov", path = "llvm-gcov-wrapper.sh"),
         tool_path(name = "ld", path = "/usr/bin/lld"),
         tool_path(name = "nm", path = "/usr/bin/nm"),
