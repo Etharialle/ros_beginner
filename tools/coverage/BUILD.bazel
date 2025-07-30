@@ -1,16 +1,20 @@
 # tools/coverage/BUILD.bazel
 #load("@bazel_tools//tools/cpp:cc_toolchain.bzl", "cc_toolchain")
-load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "tool_path")
+#load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "tool_path")
 
 package(default_visibility = ["//visibility:public"])
 
-load(":cc_clang_coverage_config.bzl", "clang_cc_toolchain_config")
+load(":defs.bzl", "etharialle_cc_toolchain_config")
+
+etharialle_cc_toolchain_config(
+    name = "etharialle_toolchain_config_impl"
+)
 
 # This creates the actual toolchain target that Bazel can use.
 cc_toolchain(
-    name = "cc-clang-coverage-toolchain",
-    toolchain_identifier = "clang-coverage-toolchain",
-    toolchain_config = ":cc-clang-coverage-config",
+    name = "cc_toolchain_impl",
+    toolchain_identifier = "coverage-clang",
+    toolchain_config = ":etharialle_toolchain_config_impl",
     # Point to the wrapper script and other files needed by the toolchain.
     all_files = ":wrapper",
     compiler_files = ":wrapper",
@@ -24,10 +28,10 @@ cc_toolchain(
 # This defines the configuration for our Clang toolchain,
 # specifically overriding the gcov tool path.
 toolchain(
-    name = "clang-coverage-toolchain",
+    name = "etharialle_coverage",
     #compiler = "clang",
     #cpu = "k8", # A common default, adjust if needed for your architecture
-    toolchain = ":cc-clang-coverage-toolchain",
+    toolchain = ":cc_toolchain_impl", #this should match the name in the cc_toolchain() function
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
     exec_compatible_with = [],
     target_compatible_with = [],
