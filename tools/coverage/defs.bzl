@@ -41,6 +41,12 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         tools = [tool(path = "gcc")], # Use the tool named 'gcc' (which points to clang++)
     )
 
+    c_compile_action = action_config(
+        action_name = "c-compile",
+        tools = [tool(path = "/usr/bin/clang-14")],
+    )
+
+
     # How to link an executable
     cxx_link_executable_action = action_config(
         action_name = "c++-link-executable",
@@ -99,6 +105,7 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         toolchain_identifier = "etharialle_coverage",
         cxx_builtin_include_directories = builtin_include_dirs,
         action_configs = [
+            c_compile_action,
             cxx_compile_action,
             cxx_link_executable_action,
             cxx_link_dynamic_library_action,
