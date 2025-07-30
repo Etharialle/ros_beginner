@@ -5,8 +5,8 @@ http_archive(
     name = "drake_ros",
     # You will need to get the new sha256 by running bazel.
     # sha256 = "...", 
-    strip_prefix = "drake-ros",
-    urls = ["https://github.com/Etharialle/drake-ros/releases/tag/0.1-fork"],
+    strip_prefix = "drake-ros-0.1-fork",
+    urls = ["https://github.com/Etharialle/drake-ros/archive/refs/tags/0.1-fork.tar.gz"],
 )
 
 load("@drake_ros//bazel_ros2_rules/deps:defs.bzl", "add_bazel_ros2_rules_dependencies")
