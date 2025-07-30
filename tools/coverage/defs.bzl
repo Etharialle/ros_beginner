@@ -28,6 +28,7 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         compiler = "clang",
         abi_version = "local",
         abi_libc_version = "local",
+        toolchain_identifier = "etharialle_coverage"
     )
 
 etharialle_cc_toolchain_config = rule(
