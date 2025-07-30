@@ -1,6 +1,6 @@
 # BUILD.bazel
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("@drake_ros//bazel_ros2_rules/ros2:ros_cc.bzl", "ros_cc_binary", "ros_cc_test")
+load("@bazel_ros2_rules//ros2:ros_cc.bzl", "ros_cc_binary", "ros_cc_test")
 
 cc_library(
     name = "ese_lib",
