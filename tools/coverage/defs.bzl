@@ -24,6 +24,59 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         "/usr/lib/llvm-14/lib/clang/14.0.0/include",
     ]
 
+        # --- ACTION CONFIGURATIONS ---
+    # This section tells Bazel HOW to use the tools listed above.
+
+    # How to compile C/C++ files
+    cxx_compile_action = action_config(
+        action_name = "c++-compile",
+        tools = [tool(path = "gcc")], # Use the tool named 'gcc' (which points to clang++)
+    )
+
+    # How to link an executable
+    cxx_link_executable_action = action_config(
+        action_name = "c++-link-executable",
+        tools = [tool(path = "gcc")],
+    )
+
+    # How to link a dynamic library (.so) - THIS FIXES YOUR ERROR
+    cxx_link_dynamic_library_action = action_config(
+        action_name = "c++-link-dynamic-library",
+        tools = [tool(path = "gcc")],
+    )
+
+    # How to create a static library (.a)
+    cxx_archive_action = action_config(
+        action_name = "c++-archive",
+        tools = [tool(path = "ar")],
+    )
+
+    # --- FEATURE FOR COVERAGE ---
+    # This adds the --coverage flags ONLY when you run 'bazel coverage'
+    coverage_feature = feature(
+        name = "coverage",
+        enabled = True,
+        flag_sets = [
+            flag_set(
+                actions = [
+                    "c++-compile",
+                    "c++-link-executable",
+                    "c++-link-dynamic-library",
+                ],
+                flag_groups = [
+                    flag_group(
+                        flags = [
+                            "--coverage",
+                            "-fprofile-arcs",
+                            "-ftest-coverage",
+                        ],
+                    ),
+                ],
+            ),
+        ],
+    )
+
+
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
         tool_paths = tool_paths,
@@ -36,7 +89,14 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         abi_version = "local",
         abi_libc_version = "local",
         toolchain_identifier = "etharialle_coverage",
-        cxx_builtin_include_directories = builtin_include_dirs
+        cxx_builtin_include_directories = builtin_include_dirs,
+        action_configs = [
+            cxx_compile_action,
+            cxx_link_executable_action,
+            cxx_link_dynamic_library_action,
+            cxx_archive_action,
+        ]
+
     )
 
 etharialle_cc_toolchain_config = rule(
