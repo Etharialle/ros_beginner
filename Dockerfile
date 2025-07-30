@@ -1,8 +1,8 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV ROS_DISTRO=iron
+ENV ROS_DISTRO=jazzy
 ENV CC=clang
 ENV CXX=clang++
 
@@ -42,8 +42,8 @@ RUN apt-get update && apt-get install -y \
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /etc/bash.bashrc
 
 # Create a system-wide .bazelrc file to enforce clang as the compiler for Bazel.
-RUN echo "build --compiler=clang" > /.bazelrc
-RUN echo "test --compiler=clang" >> /.bazelrc
+#RUN echo "build --compiler=clang" > /.bazelrc
+#RUN echo "test --compiler=clang" >> /.bazelrc
 
 # Step 7: Define the entrypoint for the container
 # This ensures commands are run within a bash shell that has sourced the setup files.
