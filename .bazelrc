@@ -22,12 +22,19 @@ test --test_output=errors
 
 # --- Clang Configuration (Kept) ---
 # This config is used by 'coverage'
-build:clang --repo_env=CC=clang
-build:clang --repo_env=CXX=clang++
-build:clang --linkopt="-fuse-ld=lld"
-test:clang --repo_env=CC=clang
-test:clang --repo_env=CXX=clang++
-test:clang --linkopt="-fuse-ld=lld"
+#build:clang --repo_env=CC=clang
+#build:clang --repo_env=CXX=clang++
+#build:clang --linkopt="-fuse-ld=lld"
+#test:clang --repo_env=CC=clang
+#test:clang --repo_env=CXX=clang++
+#test:clang --linkopt="-fuse-ld=lld"
+
+build:clang --compiler=clang
+build:clang --cxxopt=-std=c++17
+build:clang --cxxopt=-fprofile-instr-generate
+build:clang --cxxopt=-fcoverage-mapping
+build:clang --linkopt=-fprofile-instr-generate
+build:clang --linkopt=-fcoverage-mapping
 
 
 # --- COVERAGE CONFIGURATION (CORRECTED) ---
