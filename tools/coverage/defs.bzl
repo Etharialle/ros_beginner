@@ -15,7 +15,7 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         tool_path(name = "objcopy", path = "/usr/bin/objcopy"),
         tool_path(name = "objdump", path = "/usr/bin/objdump"),
         tool_path(name = "strip", path = "/usr/bin/strip"),
-    ],
+    ]
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
