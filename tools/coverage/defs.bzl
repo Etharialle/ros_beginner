@@ -1,4 +1,12 @@
-load("@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl", "tool_path")
+load(
+    "@bazel_tools//tools/cpp:cc_toolchain_config_lib.bzl",
+    "action_config",
+    "feature",
+    "flag_group",
+    "flag_set",
+    "tool",
+    "tool_path",
+)
 
 def _etharialle_cc_toolchain_config_impl(ctx):
     """The implementation of our toolchain configuration rule."""
