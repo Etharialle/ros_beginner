@@ -1,6 +1,6 @@
 workspace(name = "test_nodes")
 
-register_toolchains("//tools/coverage:clang-coverage-toolchain")
+register_toolchains("//tools/coverage:coverage-clang")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
