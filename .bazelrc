@@ -1,4 +1,10 @@
 # .bazelrc
+
+# Use WORKSPACE
+build --enable_workspace
+fetch --noenable_bzlmod
+build --noenable_bzlmod
+
 # Enable C++17
 build --cxxopt=-std=c++17
 test --cxxopt=-std=c++17
