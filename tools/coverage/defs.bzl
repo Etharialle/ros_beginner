@@ -23,6 +23,21 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         # This path is specific to Clang 14.
         "/usr/lib/llvm-14/lib/clang/14.0.0/include",
     ]
+    cxx_link_executable_action = action_config(
+        action_name = "c++-link-executable",
+        tools = [tool_path(name = "clang")], # Should be clang++ if using clang
+        flag_sets = [
+            flag_set(
+                actions = ["c++-link-executable"],
+                flag_groups = [
+                    flag_group(
+                        # This tells the linker to link against the standard C++ library
+                        flags = ["-lstdc++"],
+                    ),
+                ],
+            ),
+        ],
+    )
 
     return cc_common.create_cc_toolchain_config_info(
         ctx = ctx,
@@ -36,7 +51,8 @@ def _etharialle_cc_toolchain_config_impl(ctx):
         abi_version = "local",
         abi_libc_version = "local",
         toolchain_identifier = "etharialle_coverage",
-        cxx_builtin_include_directories = builtin_include_dirs
+        cxx_builtin_include_directories = builtin_include_dirs,
+        action_configs = [cxx_link_executable_action]
     )
 
 etharialle_cc_toolchain_config = rule(
