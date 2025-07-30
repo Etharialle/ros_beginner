@@ -57,7 +57,7 @@ build:clang --repo_env=CC=clang
 build:clang --repo_env=CXX=clang++
 build:clang --linkopt="-fuse-ld=lld"
 #build:clang --crosstool_top=//tools/coverage:cc-clang-coverage-toolchain
-build:clang --crosstool_top=//tools/coverage:etharialle_coverage
+#build:clang --crosstool_top=//tools/coverage:etharialle_coverage
 coverage --extra_toolchains=//tools/coverage:etharialle_coverage
 coverage --experimental_generate_llvm_lcov
 coverage --copt=--coverage
