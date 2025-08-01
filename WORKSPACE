@@ -1,7 +1,5 @@
 workspace(name = "test_nodes")
 
-#register_toolchains("//tools/coverage:etharialle_coverage")
-
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 

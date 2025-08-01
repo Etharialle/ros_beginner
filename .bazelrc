@@ -10,7 +10,7 @@ build --noenable_bzlmod
 
 # --- Good Practice Flags (Kept) ---
 build --incompatible_default_to_explicit_init_py
-#build --cxxopt=-std=c++17
+build --cxxopt=-std=c++17
 build --sandbox_default_allow_network=false
 build --incompatible_disallow_empty_glob
 common --action_env=PYTHONNOUSERSITE=1
@@ -29,8 +29,8 @@ test --build_tests_only
 #test:clang --repo_env=CXX=clang++
 #test:clang --linkopt="-fuse-ld=lld"
 
-build:clang --compiler=clang
-build:clang --cxxopt=-std=c++17
+#build:clang --compiler=clang
+#build:clang --cxxopt=-std=c++17
 #build:clang --cxxopt=-fprofile-instr-generate
 #build:clang --cxxopt=-fcoverage-mapping
 #build:clang --linkopt=-fprofile-instr-generate
