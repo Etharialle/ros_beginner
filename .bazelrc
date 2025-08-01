@@ -17,11 +17,11 @@ common --action_env=PYTHONNOUSERSITE=1
 common --incompatible_strict_action_env
 build --heap_dump_on_oom
 #build --noexperimental_check_output_files
-test --build_tests_only
+#test --build_tests_only
 #test --test_output=errors
 
 coverage --instrumentation_filter="^//"
-coverage --combined_report=lcov
+#coverage --combined_report=lcov
 
 build --action_env=CC=/usr/bin/gcc-14
 build --action_env=CXX=/usr/bin/g++-14
