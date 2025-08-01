@@ -1,10 +1,8 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV ROS_DISTRO=iron
-ENV CC=clang
-ENV CXX=clang++
+ENV ROS_DISTRO=jazzy
 
 # Step 3: Install core dependencies, add ROS 2 and Bazel repositories
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -42,10 +40,6 @@ RUN apt-get update && apt-get install -y \
 # Automatically source ROS 2 for every new shell session.
 # This removes the need for `source /opt/ros/.../setup.bash` in your CI scripts.
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /etc/bash.bashrc
-
-# Create a system-wide .bazelrc file to enforce clang as the compiler for Bazel.
-RUN echo "build --compiler=clang" > /.bazelrc
-RUN echo "test --compiler=clang" >> /.bazelrc
 
 # Step 7: Define the entrypoint for the container
 # This ensures commands are run within a bash shell that has sourced the setup files.
