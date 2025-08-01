@@ -27,13 +27,13 @@ ros2_cpp_test(
     size = "small",
     srcs = ["test/ese_test.cpp"],
     # The test needs to link against GTest, ROS, and our talker library
-    copts = select({
-        "//conditions:default": [],
-        "//:coverage": [
-            "-fprofile-arcs",
-            "-ftest-coverage",
-        ],
-    }),
+#    copts = select({
+#        "//conditions:default": [],
+#        "//:coverage": [
+#            "-fprofile-arcs",
+#            "-ftest-coverage",
+#        ],
+#    }),
     deps = [
         ":ese_lib",
         "@googletest//:gtest_main", # This brings in GTest

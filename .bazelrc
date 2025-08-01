@@ -23,8 +23,14 @@ build --heap_dump_on_oom
 coverage --instrumentation_filter="^//"
 #coverage --combined_report=lcov
 
-build --action_env=CC=/usr/bin/gcc-14
-build --action_env=CXX=/usr/bin/g++-14
+#build --action_env=CC=/usr/bin/gcc-14
+#build --action_env=CXX=/usr/bin/g++-14
 
 # Configure the corresponding coverage tool for this config
-coverage --action_env=GCOV_TOOL=/usr/bin/gcov-14
+common --action_env=CC=/usr/bin/gcc-14
+common --action_env=CXX=/usr/bin/g++-14
+common --action_env=GCOV_TOOL=/usr/bin/gcov-14
+common --copt="-fprofile-arcs"
+common --copt="-ftest-coverage"
+common --copt="-fcondition-coverage"
+#coverage --action_env=GCOV_TOOL=/usr/bin/gcov-14
