@@ -44,7 +44,7 @@ TEST_F(TalkerTest, TestMessageIsPublished) {
 
     // ASSERT
     ASSERT_TRUE(message_received) << "Test failed: No message was received on the topic.";
-    EXPECT_EQ(received_message.data, "Ego State");
+    EXPECT_EQ(received_message.data, "Ego State Test");
 }
 
 // Verifies that the publisher was created on the correct topic.
