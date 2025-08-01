@@ -10,6 +10,26 @@ BAZEL_COVERAGE_OUTPUT="bazel-out/_coverage/_coverage_report.dat"
 
 # --- Main Script ---
 echo "Generating coverage report for ${PROJECT_NAME}..."
+EXEC_ROOT=$(bazel info execution_root)
+echo "Using Bazel's execution root: ${EXEC_ROOT}"
+
+###
+echo "Searching for .gcda files in the execution root..."
+# Use an array to handle spaces in paths and `find`'s null-delimited output
+readarray -d '' gcda_files < <(find "${EXEC_ROOT}" -name '*.gcda' -print0)
+
+if [ ${#gcda_files[@]} -eq 0 ]; then
+    echo "----------------------------------------------------------------"
+    echo "FATAL ERROR: No .gcda files found."
+    echo "This means the 'bazel coverage' command either failed or did not generate any coverage data."
+    echo "Please run the following command first to generate the necessary files:"
+    echo "  bazel coverage --copt=\"-fcondition-coverage\" //..."
+    echo "----------------------------------------------------------------"
+    exit 1
+fi
+echo "Found ${#gcda_files[@]} .gcda file(s). Proceeding with report generation."
+
+
 
 # 1. Ensure the output directory exists
 if [ ! -d "${OUTPUT_DIR}" ]; then
@@ -21,7 +41,8 @@ fi
 # The --mcdc flag is the crucial addition here.
 echo "Capturing coverage data with MC/DC analysis..."
 lcov --capture \
-     --directory bazel-out \
+     --directory "${EXEC_ROOT}" \
+     --base-directory "${EXEC_ROOT}" \
      --output-file "${OUTPUT_DIR}/coverage.info" \
      --mcdc-coverage # <--- THIS IS THE KEY FIX FOR LCOV
 
