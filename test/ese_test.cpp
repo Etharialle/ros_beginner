@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <tuple>
+#include <future>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -71,8 +72,9 @@ TEST_P(TalkerMCDCTest, PublishingLogic) {
     executor.add_node(talker_node);
     executor.add_node(subscriber_node);
 
-    // Spin for a short duration to allow the timer to fire at least once
-    executor.spin_for(std::chrono::milliseconds(600));
+    std::promise<bool> dummy_promise;
+    std::shared_future<bool> dummy_future = dummy_promise.get_future();
+    executor.spin_until_future_complete(dummy_future, std::chrono::milliseconds(600));
 
     // ASSERT
     ASSERT_EQ(message_received, params.should_publish)
