@@ -21,7 +21,7 @@ fi
 # The --mcdc flag is the crucial addition here.
 echo "Capturing coverage data with MC/DC analysis..."
 lcov --capture \
-     --directory . \
+     --directory bazel-out \
      --output-file "${OUTPUT_DIR}/coverage.info" \
      --mcdc-coverage # <--- THIS IS THE KEY FIX FOR LCOV
 
