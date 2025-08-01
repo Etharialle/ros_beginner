@@ -15,3 +15,4 @@ Using bazel as the build system
 
 Using a docker image and gtest to test
 Requires Bazel 8.3.1 to work
+Testing with ubuntu latest now and jazzy for ROS
