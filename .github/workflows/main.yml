@@ -38,10 +38,10 @@ jobs:
   test-and-coverage:
     name: Test & Coverage
     
-    #needs: build # This job will only run if the 'build' job is successful
+    needs: build # This job will only run if the 'build' job is successful
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/etharialle/ros_beginner/ci-image:main
+      image: ghcr.io/your-username/your-repo/ci-image:main
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -51,12 +51,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run tests with coverage
-        #run: bazel coverage --config=clang --instrumentation_filter="//..." --experimental_generate_llvm_lcov --combined_report=lcov //...
-        #run: bazel coverage --config=coverage_build --config=clang --combined_report=lcov //...
         run: bazel coverage --combined_report=lcov //...
 
-
-      - name: Process LLVM Coverage Report
+      - name: Process Coverage Report
         id: coverage-summary
         run: |
           # Define the path to the raw coverage data
