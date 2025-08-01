@@ -10,4 +10,4 @@ else
 fi
 
 # Generate the HTML report
-genhtml bazel-out/_coverage/_coverage_report.dat --output-directory ${COVERAGE_DIR}
+genhtml bazel-out/_coverage/_coverage_report.dat --mcdc-coverage --output-directory ${COVERAGE_DIR}
