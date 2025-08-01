@@ -74,7 +74,7 @@ eval "$lcov_merge_cmd"
 
 # 3. Generate the HTML report using genhtml, also with MC/DC enabled.
 echo "Generating HTML report..."
-genhtml "${OUTPUT_DIR}/coverage.info" \
+genhtml "${COMBINED_INFO_FILE}" \
         --output-directory "${OUTPUT_DIR}" \
         --title "${PROJECT_NAME}" \
         --mcdc-coverage \
