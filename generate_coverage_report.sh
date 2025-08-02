@@ -6,7 +6,8 @@ set -e
 # --- Configuration ---
 PROJECT_NAME="ROS Beginner Test"
 OUTPUT_DIR="coverage_report"
-BAZEL_COVERAGE_OUTPUT="bazel-out/_coverage/_coverage_report.dat"
+#BAZEL_COVERAGE_OUTPUT="bazel-out/_coverage/_coverage_report.dat"
+COMBINED_INFO_FILE="${OUTPUT_DIR}/coverage.info"
 
 # --- Main Script ---
 echo "Generating coverage report for ${PROJECT_NAME}..."
