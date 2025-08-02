@@ -1,6 +1,6 @@
 #!/bin/bash
+# THIS IS THE FINAL, WORKING SCRIPT
 
-# Exit immediately if a command exits with a non-zero status.
 set -e
 
 # --- Configuration ---
@@ -8,54 +8,49 @@ PROJECT_NAME="ESE Coverage"
 OUTPUT_DIR="coverage_report"
 GCOV_TOOL="/usr/bin/gcov-14"
 
+# The path to our source code within the workspace
+SOURCE_SUBDIR="src" 
+
 # --- Main Script ---
 echo "Generating coverage report for ${PROJECT_NAME}..."
-
-# 1. Ask Bazel for the true location where build artifacts are generated.
-#    This is the single most important fix.
 EXEC_ROOT=$(bazel info execution_root)
-echo "Using Bazel's execution root: ${EXEC_ROOT}"
+WORKSPACE_ROOT=$(bazel info workspace)
+echo "Using Bazel execution root: ${EXEC_ROOT}"
+echo "Using project workspace: ${WORKSPACE_ROOT}"
 
-# 2. PRE-FLIGHT CHECK: Verify that coverage files were actually generated.
 echo "Searching for .gcda files in the execution root..."
-# Use an array to handle spaces in paths and `find`'s null-delimited output
 readarray -d '' gcda_files < <(find "${EXEC_ROOT}" -name '*.gcda' -print0)
 
 if [ ${#gcda_files[@]} -eq 0 ]; then
-    echo "----------------------------------------------------------------"
     echo "FATAL ERROR: No .gcda files found."
-    echo "This means the 'bazel coverage' command either failed or did not generate any coverage data."
-    echo "Please run the following command first to generate the necessary files:"
-    echo "  bazel coverage --copt=\"-fcondition-coverage\" //..."
-    echo "----------------------------------------------------------------"
     exit 1
 fi
-echo "Found ${#gcda_files[@]} .gcda file(s). Proceeding with report generation."
+echo "Found ${#gcda_files[@]} .gcda file(s). Proceeding..."
 
-# 3. Ensure the output directory exists
-if [ ! -d "${OUTPUT_DIR}" ]; then
-    echo "Directory ${OUTPUT_DIR} does not exist. Creating it..."
-    mkdir -p "${OUTPUT_DIR}"
-fi
+mkdir -p "${OUTPUT_DIR}"
 
-# 4. Capture coverage data using lcov, pointing it to the execution root.
-#    --base-directory tells lcov to remove the long EXEC_ROOT prefix from file paths,
-#    making the final report clean (e.g., "src/ese.cpp" instead of a huge path).
-echo "Capturing coverage data with MC/DC analysis..."
+# 1. Capture ALL coverage data initially
+echo "Capturing all coverage data..."
 lcov --capture \
      --directory "${EXEC_ROOT}" \
      --base-directory "${EXEC_ROOT}" \
-     --output-file "${OUTPUT_DIR}/coverage.info" \
+     --output-file "${OUTPUT_DIR}/coverage.unfiltered.info" \
      --gcov-tool "${GCOV_TOOL}" \
-     --mcdc-coverage
+     --mcdc-coverage \
+     --ignore-errors path,source # Ignore errors from external libs we are about to remove
 
-# 5. Generate the HTML report using genhtml.
-echo "Generating HTML report..."
+# 2. FILTER the data to keep ONLY our source files.
+#    This removes all the external ROS2 library coverage and their errors.
+echo "Filtering report to keep only '${SOURCE_SUBDIR}/*'..."
+lcov --extract "${OUTPUT_DIR}/coverage.unfiltered.info" \
+     "${WORKSPACE_ROOT}/${SOURCE_SUBDIR}/*" \
+     --output-file "${OUTPUT_DIR}/coverage.info"
+
+# 3. Generate the final HTML report from the CLEAN data.
+echo "Generating final HTML report..."
 genhtml "${OUTPUT_DIR}/coverage.info" \
         --output-directory "${OUTPUT_DIR}" \
         --title "${PROJECT_NAME}" \
-        --mcdc-coverage \
-        --frames \
-        --legend
+        --mcdc-coverage --frames --legend
 
 echo "Done. Coverage report is available at: ${OUTPUT_DIR}/index.html"
