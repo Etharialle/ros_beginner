@@ -30,7 +30,7 @@ coverage --instrumentation_filter="^//"
 common --action_env=CC=/usr/bin/gcc-14
 common --action_env=CXX=/usr/bin/g++-14
 common --action_env=GCOV_TOOL=/usr/bin/gcov-14
-common --action_env=COVERAGE_GCOV_OPTIONS=--conditions
+common --action_env=COVERAGE_GCOV_OPTIONS=-g
 #common --action_env=VERBOSE_COVERAGE=true
 common --cxxopt="-fprofile-arcs"
 common --cxxopt="-ftest-coverage"
