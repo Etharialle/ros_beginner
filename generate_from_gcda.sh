@@ -47,14 +47,14 @@ lcov --capture \
      --base-directory "${EXEC_ROOT}" \
      --output-file "${OUTPUT_DIR}/coverage.info" \
      --gcov-tool "${GCOV_TOOL}" \
-     --mcdc
+     --mcdc-coverage
 
 # 5. Generate the HTML report using genhtml.
 echo "Generating HTML report..."
 genhtml "${OUTPUT_DIR}/coverage.info" \
         --output-directory "${OUTPUT_DIR}" \
         --title "${PROJECT_NAME}" \
-        --mcdc \
+        --mcdc-coverage \
         --frames \
         --legend
 
