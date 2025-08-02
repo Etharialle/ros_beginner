@@ -1,5 +1,5 @@
 #!/bin/bash
-# THIS IS THE FINAL, WORKING SCRIPT
+# THIS IS THE FINAL, WORKING SCRIPT THAT INCLUDES ALL YOUR CODE
 
 set -e
 
@@ -7,9 +7,6 @@ set -e
 PROJECT_NAME="ESE Coverage"
 OUTPUT_DIR="coverage_report"
 GCOV_TOOL="/usr/bin/gcov-14"
-
-# The path to our source code within the workspace
-SOURCE_SUBDIR="src" 
 
 # --- Main Script ---
 echo "Generating coverage report for ${PROJECT_NAME}..."
@@ -39,11 +36,12 @@ lcov --capture \
      --mcdc-coverage \
      --ignore-errors path,source # Ignore errors from external libs we are about to remove
 
-# 2. FILTER the data to keep ONLY our source files.
-#    This removes all the external ROS2 library coverage and their errors.
-echo "Filtering report to keep only '${SOURCE_SUBDIR}/*'..."
+# 2. FILTER the data to keep ONLY our source files from ALL desired directories.
+#    This is the corrected step. We provide a pattern for 'src' and for 'test'.
+echo "Filtering report to keep only 'src/*' and 'test/*'..."
 lcov --extract "${OUTPUT_DIR}/coverage.unfiltered.info" \
-     "${WORKSPACE_ROOT}/${SOURCE_SUBDIR}/*" \
+     "${WORKSPACE_ROOT}/src/*" \
+     "${WORKSPACE_ROOT}/test/*" \
      --output-file "${OUTPUT_DIR}/coverage.info"
 
 # 3. Generate the final HTML report from the CLEAN data.
