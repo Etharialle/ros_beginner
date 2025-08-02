@@ -33,4 +33,7 @@ common --action_env=GCOV_TOOL=/usr/bin/gcov-14
 common --cxxopt="-fprofile-arcs"
 common --cxxopt="-ftest-coverage"
 common --cxxopt="-fcondition-coverage"
+common --linkopt="-fprofile-arcs"
+common --linkopt="-ftest-coverage"
+common --linkopt="-fcondition-coverage"
 #coverage --action_env=GCOV_TOOL=/usr/bin/gcov-14
