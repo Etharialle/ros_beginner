@@ -39,3 +39,23 @@ ros2_cpp_test(
         "@googletest//:gtest_main", # This brings in GTest
     ],
 )
+
+cc_library(
+    name = "ese_lib_raw",
+    srcs = ["src/ese.cpp"],
+    hdrs = ["include/ese.hpp"],
+    includes = ["include"],
+    deps = [
+        "@ros2_rclcpp//:rclcpp",
+        "@ros2_common_interfaces//:cpp_std_msgs",
+    ],
+)
+
+cc_test(
+    name = "ese_test_raw",
+    srcs = ["test/ese_test.cpp"],
+    deps = [
+        ":ese_lib_raw",
+        "@googletest//:gtest_main",
+    ],
+)
