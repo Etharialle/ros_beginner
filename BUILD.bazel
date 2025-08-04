@@ -1,55 +1,10 @@
-#load("@com_github_mvukov_rules_ros2//ros2:bag.bzl", "ros2_bag")
-#load("@com_github_mvukov_rules_ros2//ros2:cc_defs.bzl", "ros2_cpp_binary", "ros2_cpp_library", "ros2_cpp_test")
-#load("@com_github_mvukov_rules_ros2//ros2:launch.bzl", "ros2_launch")
-#load("@com_github_mvukov_rules_ros2//ros2:topic.bzl", "ros2_topic")
-#
-#ros2_cpp_library(
-#    name = "ese_lib",
-#    srcs = ["src/ese.cpp"],
-#    hdrs = ["include/ese.hpp"],
-#    includes = ["include"],
-#    deps = [
-#        "@ros2_rclcpp//:rclcpp",
-#        "@ros2_common_interfaces//:cpp_std_msgs",
-#    ],
-#)
-#
-#ros2_cpp_binary(
-#    name = "ese_node", # Changed name to be more descriptive
-#    srcs = ["src/main.cpp"],
-#    deps = [
-#        ":ese_lib", # Depends on our new library
-#    ],
-#)
-#
-#ros2_cpp_test(
-#    name = "ese_test",
-#    size = "small",
-#    srcs = ["test/ese_test.cpp"],
-#    # The test needs to link against GTest, ROS, and our talker library
-##    copts = select({
-##        "//conditions:default": [],
-##        "//:coverage": [
-##            "-fprofile-arcs",
-##            "-ftest-coverage",
-##        ],
-##    }),
-#    deps = [
-#        ":ese_lib",
-#        "@googletest//:gtest_main", # This brings in GTest
-#    ],
-#)
+load("@com_github_mvukov_rules_ros2//ros2:bag.bzl", "ros2_bag")
+load("@com_github_mvukov_rules_ros2//ros2:cc_defs.bzl", "ros2_cpp_binary", "ros2_cpp_library", "ros2_cpp_test")
+load("@com_github_mvukov_rules_ros2//ros2:launch.bzl", "ros2_launch")
+load("@com_github_mvukov_rules_ros2//ros2:topic.bzl", "ros2_topic")
 
-cc_binary(
-    name = "ese_node_raw", # Changed name to be more descriptive
-    srcs = ["src/main.cpp"],
-    deps = [
-        ":ese_lib_raw", # Depends on our new library
-    ],
-)
-
-cc_library(
-    name = "ese_lib_raw",
+ros2_cpp_library(
+    name = "ese_lib",
     srcs = ["src/ese.cpp"],
     hdrs = ["include/ese.hpp"],
     includes = ["include"],
@@ -59,11 +14,20 @@ cc_library(
     ],
 )
 
-cc_test(
-    name = "ese_test_raw",
+ros2_cpp_binary(
+    name = "ese_node", # Changed name to be more descriptive
+    srcs = ["src/main.cpp"],
+    deps = [
+        ":ese_lib", # Depends on our new library
+    ],
+)
+
+ros2_cpp_test(
+    name = "ese_test",
+    size = "small",
     srcs = ["test/ese_test.cpp"],
     deps = [
-        ":ese_lib_raw",
-        "@googletest//:gtest_main",
+        ":ese_lib",
+        "@googletest//:gtest_main", # This brings in GTest
     ],
 )
