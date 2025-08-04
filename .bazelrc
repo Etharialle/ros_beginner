@@ -36,6 +36,7 @@ common --cxxopt="-fprofile-arcs"
 common --cxxopt="-ftest-coverage"
 common --cxxopt="-fcondition-coverage"
 common --cxxopt="-g"
+common --cxxopt=-fbranch-probabilities
 common --linkopt="-fprofile-arcs"
 common --linkopt="-ftest-coverage"
 common --linkopt="-fcondition-coverage"
