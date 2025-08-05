@@ -26,7 +26,6 @@ ros2_cpp_test(
     name = "ese_test",
     size = "small",
     srcs = ["test/ese_test.cpp"],
-    # The test needs to link against GTest, ROS, and our talker library
     deps = [
         ":ese_lib",
         "@googletest//:gtest_main", # This brings in GTest

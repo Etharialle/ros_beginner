@@ -3,25 +3,23 @@ workspace(name = "test_nodes")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-
-
-http_archive(
-    name = "hedron_compile_commands",
-
-    # Replace the commit hash (0e990032f3c5a866e72615cf67e5ce22186dcb97) in both places (below) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main), rather than using the stale one here.
-    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
-    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/refs/heads/main.tar.gz",
-    strip_prefix = "bazel-compile-commands-extractor-main",
-    # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
-)
-load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
-hedron_compile_commands_setup()
-load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
-hedron_compile_commands_setup_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive()
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
-hedron_compile_commands_setup_transitive_transitive_transitive()
+#http_archive(
+#    name = "hedron_compile_commands",
+#
+#    # Replace the commit hash (0e990032f3c5a866e72615cf67e5ce22186dcb97) in both places (below) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main), rather than using the stale one here.
+#    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
+#    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/refs/heads/main.tar.gz",
+#    strip_prefix = "bazel-compile-commands-extractor-main",
+#    # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
+#)
+#load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
+#hedron_compile_commands_setup()
+#load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
+#hedron_compile_commands_setup_transitive()
+#load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
+#hedron_compile_commands_setup_transitive_transitive()
+#load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
+#hedron_compile_commands_setup_transitive_transitive_transitive()
 
 
 # This import is relevant for these examples and this (rules_ros2) repository.
@@ -82,20 +80,3 @@ load(
 
 install_rules_ros2_pip_deps()
 
-# Below is an optional setup for Rust support for ROS 2.
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_1.bzl", "rust_setup_stage_1")
-
-rust_setup_stage_1()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_2.bzl", "rust_setup_stage_2")
-
-rust_setup_stage_2()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_3.bzl", "rust_setup_stage_3")
-
-rust_setup_stage_3()
-
-load("@com_github_mvukov_rules_ros2//repositories:rust_setup_stage_4.bzl", "rust_setup_stage_4")
-
-rust_setup_stage_4()

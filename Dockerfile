@@ -1,10 +1,8 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV ROS_DISTRO=iron
-ENV CC=clang
-ENV CXX=clang++
+ENV ROS_DISTRO=jazzy
 
 # Step 3: Install core dependencies, add ROS 2 and Bazel repositories
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -29,9 +27,23 @@ RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > /etc/
 RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
 RUN apt-get update && apt-get install -y \
     bazel \
-    lcov \
-    clang \
+    gcc-14 \
+    g++-14 \
+    libdatetime-perl \
+    libtimedate-perl \
+    libcapture-tiny-perl \
     && rm -rf /var/lib/apt/lists/*
+
+# Set gcc-14 and g++-14 as default
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 100 \
+    && update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-14 100
+
+# Install lcov
+RUN curl -L https://github.com/linux-test-project/lcov/releases/download/v2.3.1/lcov-2.3.1.tar.gz | tar xz \
+    && cd lcov-2.3.1 \
+    && make install \
+    && cd .. && rm -rf lcov-2.3.1
 
 #RUN curl -L -o /usr/local/bin/bazel "https://github.com/bazelbuild/bazelisk/releases/download/v${BAZELISK_VERSION}/bazelisk-linux-amd64" \
 #    && chmod +x /usr/local/bin/bazel
@@ -40,10 +52,7 @@ RUN apt-get update && apt-get install -y \
 # Automatically source ROS 2 for every new shell session.
 # This removes the need for `source /opt/ros/.../setup.bash` in your CI scripts.
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /etc/bash.bashrc
-
-# Create a system-wide .bazelrc file to enforce clang as the compiler for Bazel.
-RUN echo "build --compiler=clang" > /.bazelrc
-RUN echo "test --compiler=clang" >> /.bazelrc
+RUN echo "export LCOVRC=/path/to/.lcovrc" >> /etc/bash.bashrc
 
 # Step 7: Define the entrypoint for the container
 # This ensures commands are run within a bash shell that has sourced the setup files.
