@@ -12,11 +12,10 @@ public:
     void set_active(bool active);
     void set_data_valid(bool valid);
     void set_manual_override(bool override);
-    void publish_message();
+
 
 private:
-
-    //void publish_message();
+    void publish_message();
 
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
