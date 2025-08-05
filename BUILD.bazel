@@ -31,3 +31,13 @@ ros2_cpp_test(
         "@googletest//:gtest_main", # This brings in GTest
     ],
 )
+
+ros2_cpp_test(
+    name = "ese_mcdc_test",
+    size = "small",
+    srcs = ["test/ese_mcdc_test.cpp"],
+    deps = [
+        ":ese_lib",
+        "@googletest//:gtest_main", # This brings in GTest
+    ],
+)
