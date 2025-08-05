@@ -37,7 +37,10 @@ common --cxxopt="-ftest-coverage"
 common --cxxopt="-fcondition-coverage"
 common --cxxopt="-g"
 common --cxxopt=-fbranch-probabilities
+common --cxxopt=-fprofile-conditions
 common --linkopt="-fprofile-arcs"
 common --linkopt="-ftest-coverage"
 common --linkopt="-fcondition-coverage"
+common --linkopt="-fprofile-conditions"
+
 #coverage --action_env=GCOV_TOOL=/usr/bin/gcov-14
