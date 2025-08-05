@@ -15,9 +15,8 @@ public:
 
 
 private:
-    friend class TalkerTest;
 
-    void publish_message();
+
 
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
